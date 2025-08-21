@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # my apps
     'lash_store.accounts.apps.AccountsConfig',
+    'lash_store.common.apps.CommonConfig',
 
     # installed apps
     'allauth',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -156,7 +158,15 @@ SOCIALACCOUNT_PROVIDERS = {
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'bg'
+
+LANGUAGES = [
+    ("bg", "Bulgarian"),
+    ("de", "German"),
+    ("en", "English")
+]
+
+SITE_ID = 1
 
 TIME_ZONE = 'UTC'
 
@@ -183,18 +193,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.LashUser'
 
-SITE_ID = 1
-
 # Конфигурация за логин с email (без username) чрез django-allauth
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # за админ/permissions
     'allauth.account.auth_backends.AuthenticationBackend',  # за allauth
 ]
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
-ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_BY_CODE_ENABLED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True
+ACCOUNT_LOGIN_METHODS = {"email",}
+ACCOUNT_PASSWORD_RESET_BY_CODE_ENABLED = True
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 # По желание:
 # ACCOUNT_EMAIL_VERIFICATION = 'optional'  # или 'mandatory' в прод

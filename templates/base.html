@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load account %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +28,17 @@
                 </ul>
             </nav>
             <section class="header-follow-us">
+                {% block username %}
+                <h2>
+                {% endblock %}
+                {% if user.is_authenticated %}
+                <p>Welcome, {{ user }}!</p>
+                <a href="{% url 'account_logout' %}">Logout</a>
+                {% else %}
+                <a href="{% url 'account_login' %}">Login</a>
+                {% endif %}       
+            </h2>          
+
                 <h2>Follow us</h2>
                 <ul>
                     <li><a href="https://www.instagram.com/your-page"><i class="fa-brands fa-instagram"></i></a></li>
@@ -271,7 +282,7 @@
             <p>&copy; 2025 Handmade Eyelash FANS. All rights reserved.</p>
         </footer>
     </div>
-    <script src="./base.js"></script>
+    <script src="{% static 'js/base/base.js' %}"></script>
 </body>
 
 </html>

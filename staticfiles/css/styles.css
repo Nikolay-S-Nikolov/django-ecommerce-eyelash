@@ -233,7 +233,8 @@ footer a:hover {
     width: fit-content;
 }
 
-.header-follow-us ul a {
+.header-follow-us ul a,
+.header-follow-us h2 a {
     color: #333;
     text-decoration: none;
 }

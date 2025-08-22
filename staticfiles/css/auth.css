@@ -1,0 +1,517 @@
+/* ВЪВЕДИ ТОВА ВЕДНЪЖ (напр. в <head> или в основния CSS) */
+:root {
+  /* Типография */
+  --font-sans: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-size-base: 15px;
+  --line-height-base: 1.5;
+
+  /* Палитра – извлечена от текущите стилове */
+  --color-bg: #ffffff;
+  /* общ фон */
+  --color-surface: #f9f9f9;
+  /* панели/карти/подложки */
+  --color-text: #333333;
+  /* основен текст */
+  --color-text-2: #555555;
+  /* вторичен */
+  --color-text-3: #666666;
+  /* по-тих текст */
+
+  --color-primary: #ff6f91;
+  /* активен/hover акцент */
+  --color-primary-soft: #ffd5dc;
+  /* основен розов (фон бутони/хедър) */
+  --color-primary-alt: #ffb6c1;
+  /* по-светъл нюанс */
+  --color-primary-deep: #c07b9a;
+  /* по-тъмен розов (бутон/бордер) */
+
+  --color-link: #ffd5dc;
+  /* текущ цвят за <a> */
+  --color-link-hover: #ff6f91;
+
+  /* Състояния */
+  --color-success: #2ecc71;
+  --color-danger: #ff4d6d;
+  /* ползваш този цвят в CTA */
+  --color-warning: #ffc107;
+  --color-info: #3b5998;
+  /* използваш във “message-facebook” */
+
+  /* Бордери/сенки/радиуси */
+  --color-border: #e6e6e6;
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, .1);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  /* Основни */
+  --bs-body-bg: var(--color-bg);
+  --bs-body-color: var(--color-text);
+
+  /* Акценти и състояния */
+  --bs-primary: var(--color-primary);
+  --bs-secondary-color: var(--color-text-2);
+  --bs-danger: var(--color-danger);
+  --bs-success: var(--color-success);
+  --bs-info: var(--color-info);
+
+  /* Бордери */
+  --bs-border-color: var(--color-border);
+}
+
+body {
+  font: var(--font-size-base)/var(--line-height-base) var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+
+body.auth-scope {
+  /* Нищо глобално тук, за да не влияе извън auth страниците */
+}
+
+/* Контейнер и секции */
+body.auth-scope .auth-container,
+body.auth-scope #content {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Карти / панели за форми */
+body.auth-scope .auth-card {
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border: 1px solid color-mix(in oklab, var(--bs-body-color) 10%, transparent);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 24px color-mix(in oklab, var(--bs-body-color) 12%, transparent);
+}
+
+body.auth-scope .auth-card .card-header {
+  background: color-mix(in oklab, var(--bs-primary) 6%, var(--bs-body-bg));
+  color: var(--bs-body-color);
+  border-bottom: 1px solid color-mix(in oklab, var(--bs-primary) 16%, transparent);
+  font-weight: 600;
+}
+
+/* Типография */
+body.auth-scope h1,
+body.auth-scope h2,
+body.auth-scope h3 {
+  color: var(--bs-body-color);
+  letter-spacing: -0.01em;
+}
+
+body.auth-scope .auth-muted,
+body.auth-scope .form-text {
+  color: var(--bs-secondary-color, color-mix(in oklab, var(--bs-body-color) 65%, var(--bs-body-bg)));
+}
+
+/* Формови елементи */
+body.auth-scope .form-control,
+body.auth-scope .form-select {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: color-mix(in oklab, var(--bs-body-color) 18%, transparent);
+  border-radius: 0.6rem;
+}
+
+body.auth-scope .form-control:focus,
+body.auth-scope .form-select:focus {
+  border-color: color-mix(in oklab, var(--bs-primary) 55%, var(--bs-body-bg));
+  box-shadow: 0 0 0 .25rem color-mix(in oklab, var(--bs-primary) 25%, transparent);
+}
+
+/* Състояния (грешки/успехи) */
+body.auth-scope .is-invalid {
+  border-color: var(--bs-danger);
+}
+
+body.auth-scope .is-valid {
+  border-color: var(--bs-success);
+}
+
+body.auth-scope .invalid-feedback,
+body.auth-scope .errorlist {
+  color: var(--bs-danger);
+  margin-top: .25rem;
+  margin-bottom: 0;
+}
+
+/* Бутоните наследяват темата */
+body.auth-scope .btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+body.auth-scope .btn-primary:hover {
+  background-color: color-mix(in oklab, var(--bs-primary) 88%, black);
+  border-color: color-mix(in oklab, var(--bs-primary) 88%, black);
+}
+
+body.auth-scope .btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: color-mix(in oklab, var(--bs-primary) 65%, var(--bs-body-bg));
+}
+
+body.auth-scope .btn-outline-primary:hover {
+  background-color: color-mix(in oklab, var(--bs-primary) 14%, transparent);
+  color: var(--bs-primary);
+}
+
+/* Линкове за действия (напр. Forgot password, Sign up) */
+body.auth-scope a.auth-link {
+  color: var(--bs-primary);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--bs-primary) 35%, transparent);
+}
+
+body.auth-scope a.auth-link:hover {
+  color: color-mix(in oklab, var(--bs-primary) 86%, black);
+  border-bottom-color: currentColor;
+}
+
+/* Навигация в странична лента за настройки/управление на акаунт */
+body.auth-scope .auth-sidebar {
+  background: color-mix(in oklab, var(--bs-body-bg) 90%, var(--bs-body-color));
+  border-right: 1px solid color-mix(in oklab, var(--bs-body-color) 12%, transparent);
+}
+
+body.auth-scope .auth-sidebar .nav-link {
+  color: var(--bs-body-color);
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+}
+
+body.auth-scope .auth-sidebar .nav-link:hover {
+  background: color-mix(in oklab, var(--bs-primary) 10%, var(--bs-body-bg));
+  color: var(--bs-body-color);
+}
+
+body.auth-scope .auth-sidebar .nav-link.active,
+body.auth-scope .auth-sidebar .nav-pills .nav-link.active {
+  background: color-mix(in oklab, var(--bs-primary) 18%, var(--bs-body-bg));
+  color: var(--bs-body-color);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--bs-primary) 45%, transparent);
+}
+
+/* Списъци, таблици (напр. сесии, устройства) */
+body.auth-scope .auth-list-group .list-group-item,
+body.auth-scope .table {
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  border-color: color-mix(in oklab, var(--bs-body-color) 12%, transparent);
+}
+
+body.auth-scope .table thead th {
+  color: color-mix(in oklab, var(--bs-body-color) 80%, var(--bs-body-bg));
+  font-weight: 600;
+}
+
+/* Alerts / съобщения */
+body.auth-scope .alert {
+  border-radius: 0.6rem;
+  border: 1px solid transparent;
+}
+
+body.auth-scope .alert-info {
+  background: color-mix(in oklab, var(--bs-info) 12%, var(--bs-body-bg));
+  color: color-mix(in oklab, var(--bs-info) 75%, var(--bs-body-color));
+  border-color: color-mix(in oklab, var(--bs-info) 35%, transparent);
+}
+
+body.auth-scope .alert-success {
+  background: color-mix(in oklab, var(--bs-success) 12%, var(--bs-body-bg));
+  color: color-mix(in oklab, var(--bs-success) 75%, var(--bs-body-color));
+  border-color: color-mix(in oklab, var(--bs-success) 35%, transparent);
+}
+
+body.auth-scope .alert-danger,
+body.auth-scope .alert-error {
+  background: color-mix(in oklab, var(--bs-danger) 12%, var(--bs-body-bg));
+  color: color-mix(in oklab, var(--bs-danger) 80%, var(--bs-body-color));
+  border-color: color-mix(in oklab, var(--bs-danger) 35%, transparent);
+}
+
+/* Помощни класове за разстояния и подравняване */
+body.auth-scope .auth-actions {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+body.auth-scope .auth-divider {
+  height: 1px;
+  background: color-mix(in oklab, var(--bs-body-color) 10%, transparent);
+  margin: 1rem 0;
+}
+
+/* По-добра достъпност при намалено движение */
+@media (prefers-reduced-motion: reduce) {
+  body.auth-scope * {
+    transition: none !important;
+  }
+}
+
+/* Центриране на auth съдържанието без медия заявки */
+body.auth-scope .container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Хедър/футър остават естествено отгоре/отдолу */
+body.auth-scope .header,
+body.auth-scope .footer {
+  flex: 0 0 auto;
+}
+
+/* Главната auth зона в средата на екрана */
+body.auth-scope .container>.col {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 32px);
+}
+
+/* Карта с формата – центрирана, компактна и без нужда от responsive правила */
+body.auth-scope #content {
+  width: min(100% - 2rem, 460px);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: clamp(16px, 4vw, 28px);
+}
+
+/* Типография вътре в картата */
+body.auth-scope #content h1 {
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+body.auth-scope #content h2 {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+}
+
+body.auth-scope #content p {
+  color: var(--color-text-3);
+  margin: 0.5rem 0 1rem 0;
+}
+
+/* Формови елементи (съобразени с текущата ти палитра) */
+body.auth-scope #content label {
+  display: block;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.35rem;
+}
+
+body.auth-scope #content input[type="email"],
+body.auth-scope #content input[type="password"],
+body.auth-scope #content input[type="text"],
+body.auth-scope #content select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color .2s ease, box-shadow .2s ease;
+  appearance: none;
+}
+
+body.auth-scope #content input[type="email"]:focus,
+body.auth-scope #content input[type="password"]:focus,
+body.auth-scope #content input[type="text"]:focus,
+body.auth-scope #content select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--color-primary) 22%, transparent);
+}
+
+/* Checkbox ред – подравняване */
+body.auth-scope #content input[type="checkbox"] {
+  accent-color: var(--color-primary);
+  transform: translateY(1px);
+}
+
+/* Бутона за изпращане (няма клас – стилизираме директно) */
+body.auth-scope #content button[type="submit"] {
+  width: 100%;
+  margin-top: 0.25rem;
+  background: var(--color-primary-deep);
+  color: #fff;
+  border: 2px solid var(--color-primary-deep);
+  border-radius: 9999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color .2s ease, border-color .2s ease, transform .02s ease;
+}
+
+body.auth-scope #content button[type="submit"]:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+body.auth-scope #content button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+/* Линкове вътре в auth картата (Forgot password, Sign up, 3rd party) */
+body.auth-scope #content a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-link) 55%, transparent);
+  transition: color .2s ease, border-color .2s ease;
+}
+
+body.auth-scope #content a:hover {
+  color: var(--color-link-hover);
+  border-bottom-color: currentColor;
+}
+
+/* Разделители */
+body.auth-scope #content hr {
+  border: 0;
+  height: 1px;
+  background: var(--color-border);
+  margin: 1rem 0;
+}
+
+/* Списъци с доставчици (Google и др.) – подравняване и разредка */
+body.auth-scope #content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 0;
+}
+
+body.auth-scope #content ul li {
+  margin: 0.5rem 0;
+}
+
+/* Информационни съобщения/грешки (ако има) */
+body.auth-scope #content .helptext,
+body.auth-scope #content .errorlist,
+body.auth-scope #content .invalid-feedback {
+  font-size: 0.92em;
+  color: var(--color-danger);
+  margin-top: 0.25rem;
+}
+
+/* Намалено движение */
+@media (prefers-reduced-motion: reduce) {
+
+  body.auth-scope #content *,
+  body.auth-scope .container>.col {
+    transition: none !important;
+  }
+}
+
+/* Тъмна/светла тема – автоматично наследяване от Bootstrap */
+@media (prefers-color-scheme: dark) {
+  /* Няма нужда от специални промени; използваме --bs- променливите */
+}
+
+/* AUTH aside – панел и меню */
+body.auth-scope .row>aside {
+  background: color-mix(in oklab, var(--color-primary-soft) 40%, var(--color-bg));
+  border-right: 1px solid var(--color-border);
+  align-self: start;
+  top: 12px;
+  padding: 0;
+  /* p-3 от UL ще осигури вътрешен падинг */
+}
+
+/* Нулиране/подредба на списъка като вертикално меню */
+body.auth-scope aside ul.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 12px;
+}
+
+/* Елементите да не добавят допълнителни марджини */
+body.auth-scope aside .nav-item {
+  margin: 0;
+}
+
+/* Линкове в менюто – override на .text-white и тъмни фонове */
+body.auth-scope aside .nav-link {
+  display: block;
+  color: var(--color-text) !important;
+  /* надделява над text-white */
+  text-decoration: none;
+  text-align: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 500;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .02s ease;
+  outline: none;
+}
+
+/* Hover състояние */
+body.auth-scope aside .nav-link:hover {
+  background: color-mix(in oklab, var(--color-primary-soft) 40%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-primary) 35%, transparent);
+}
+
+/* Active/текуща страница */
+body.auth-scope aside .nav-link.active,
+body.auth-scope aside .nav-pills .nav-link.active,
+body.auth-scope aside .nav-link[aria-current="page"] {
+  background: color-mix(in oklab, var(--color-primary) 15%, var(--color-bg));
+  color: var(--color-text) !important;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--color-primary) 45%, transparent);
+}
+
+/* Фокус за достъпност */
+body.auth-scope aside .nav-link:focus-visible {
+  box-shadow:
+    0 0 0 .2rem color-mix(in oklab, var(--color-primary) 28%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--color-primary) 45%, transparent);
+}
+
+/* Малък индикатор при hover/active – ляв акцент */
+body.auth-scope aside .nav-link:hover,
+body.auth-scope aside .nav-link.active,
+body.auth-scope aside .nav-link[aria-current="page"] {
+  position: relative;
+}
+
+body.auth-scope aside .nav-link:hover::before,
+body.auth-scope aside .nav-link.active::before,
+body.auth-scope aside .nav-link[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--color-primary);
+}
+
+/* Заглавие в основната зона да има малко отстояние от менюто визуално */
+body.auth-scope main #content {
+  margin: 0 auto;
+}
+
+/* За тъмни класове, ако идват от готови класове */
+body.auth-scope aside.text-bg-dark {
+  background: color-mix(in oklab, var(--color-primary-soft) 50%, var(--color-bg)) !important;
+  color: var(--color-text) !important;
+}

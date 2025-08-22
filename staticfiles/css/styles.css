@@ -234,7 +234,7 @@ footer a:hover {
 }
 
 .header-follow-us ul a,
-.header-follow-us h2 a {
+.header-follow-us .header-right a {
     color: #333;
     text-decoration: none;
 }
@@ -247,6 +247,93 @@ footer a:hover {
     gap: 10px;
     padding: 0;
 }
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.header-right label {
+    display: none;
+}
+
+.header-right a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+.header-right a:hover {
+    color: #ff6f91; /* Highlight color on hover */
+}
+
+.header-right .btn {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all .2s ease;
+    line-height: 1;
+    cursor: pointer;
+    border: 2px solid transparent;
+    background: #c07b9a;
+    color: #fff;
+    border-color: #c07b9a;
+    font-size: 1rem;
+
+
+}
+
+/* Language switcher*/
+form.lang-switcher {
+    height: 38px;
+}
+
+.lang-switcher {
+  border-radius: 9999px;
+  background:#c07b9a;
+  border: 1px solid #c07b9a;
+  backdrop-filter: blur(6px);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.lang-switcher:hover {
+    border-color: #ff6f91;
+}
+
+.lang-switcher option {
+ border: none;
+ font-size: 1rem;
+}
+  /*
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--white);
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.lang-switch button[aria-pressed="true"] {
+  background: var(--white);
+  color: var(--primary);
+}
+.lang-switch button:hover {
+  background: rgba(255,255,255,.25);
+}
+.lang-switch button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.7);
+} */
+
+
 
 /* product card */
 
@@ -644,6 +731,20 @@ footer a:hover {
     margin-top: 20px;
 }
 
+@media (max-width: 1224px) {
+    .header-follow-us {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header-right {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
 
 @media (max-width: 768px) {
     .end-colection {

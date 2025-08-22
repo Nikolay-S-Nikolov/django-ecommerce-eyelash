@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n allauth %}
+{% block main_content %}
+    <div class="system-message">
+        {% if messages %}
+            {% for message in messages %}
+                {% element alert level=message.tags %}
+                    {% slot message %}
+                        {{ message }}
+                    {% endslot %}
+                {% endelement %}
+            {% endfor %}
+        {% endif %}
+        <div id="content" class="extra-content">
+            {% block extra_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

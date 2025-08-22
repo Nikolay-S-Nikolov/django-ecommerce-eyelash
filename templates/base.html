@@ -1,14 +1,18 @@
+
+<!DOCTYPE html>
 {% load static %}
 {% load account %}
-<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+<html lang="bg">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title_content %}Handmade Eyelash FANS{% endblock %}</title>
+    <title>{% block head_title %}Handmade Eyelash FANS{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="https://kit.fontawesome.com/ef151050f5.js" crossorigin="anonymous"></script>
+    {% block extra_head_script %} {% endblock %}
+
 </head>
 
 <body>
@@ -28,16 +32,35 @@
                 </ul>
             </nav>
             <section class="header-follow-us">
-                {% block username %}
-                <h2>
-                {% endblock %}
-                {% if user.is_authenticated %}
-                <p>Welcome, {{ user }}!</p>
-                <a href="{% url 'account_logout' %}">Logout</a>
-                {% else %}
-                <a href="{% url 'account_login' %}">Login</a>
-                {% endif %}       
-            </h2>          
+                <div class="header-right">
+                            <form method="post" class="lang-switcher" action="{% url 'set_language' %}">
+                                {% csrf_token %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                <label for="language-dropdown" class="visually-hidden">{% translate "Select Language" %}</label>
+                                <select id="language-dropdown "
+                                        class="lang-switcher"
+                                        aria-label="{% translate 'Select Language' %}"
+                                        name="language"
+                                        onchange="this.form.submit()">
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for lang in languages %}
+                                        <option lang="{{ lang.code }}"
+                                                {% if lang.code == LANGUAGE_CODE %}selected{% endif %}
+                                                value="{{ lang.code }}">{{ lang.name_local }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'account_logout' %}" class="btn btn-danger">{% translate "Sign Out" %}</a>
+                            {% else %}
+                                <a href="{% url 'account_login' %}" class="btn btn-outline-light">{% translate "Sign In" %}</a>
+                                {% url 'account_signup' as signup_url_ %}
+                                {% if signup_url_ %}
+                                    <a href="{{ signup_url_ }}" class="btn btn-success">{% translate "Sign Up" %}</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
 
                 <h2>Follow us</h2>
                 <ul>

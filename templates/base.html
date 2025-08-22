@@ -61,7 +61,6 @@
                                 {% endif %}
                             {% endif %}
                         </div>
-
                 <h2>Follow us</h2>
                 <ul>
                     <li><a href="https://www.instagram.com/your-page"><i class="fa-brands fa-instagram"></i></a></li>
@@ -69,242 +68,245 @@
                 </ul>
             </section>
         </header>
+        {% block body %}
+            {% block main_content %} {% endblock %}
+            <section class="products">
+                <h1>Ръчно изработени готови снопчета за миглопластика</h1>
+                <p>Разгледайте нашата гама от висококачествени, ръчно изработени ветрила на мигли, предназначени за
+                    професионалисти в областта на красотата.</p>
+                <div class="product-colection">
+                    <ul class="products-list">
+                        <li class="product-item">
+                            <div class="card-wrapper">
+                                <div class="card">
+                                    <div class="card-inner">
+                                        <a href="#">
+                                            <div class="card-media" id="card-media">
+                                                <div class="media-hover-effect">
+                                                    <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
+                                                </div>
+                                                <div class="media">
+                                                    <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-information">
+                                            <h3 class="card-heading-h3">
+                                                <a href="#">
+                                                    4D - 0.07mm - С, Сс, D извивка 500бр.
+                                                </a>
+                                            </h3>
+                                            <span class="price-item">
+                                                Цена 16.56 лв
+                                            </span>
+                                            <button class="see-more-btn">Повече информация</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="product-item">
+                            <div class="card-wrapper">
+                                <div class="card">
+                                    <div class="card-inner">
+                                        <a href="#">
+                                            <div class="card-media" id="card-media">
+                                                <div class="media-hover-effect">
+                                                    <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
+                                                </div>
+                                                <div class="media">
+                                                    <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-information">
+                                            <h3 class="card-heading-h3">
+                                                <a href="#">
+                                                    4D - 0.07mm - С, Сс, D извивка 500бр.
+                                                </a>
+                                            </h3>
+                                            <span class="price-item">
+                                                Цена 16.56 лв
+                                            </span>
+                                            <button class="see-more-btn">Повече информация</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="product-item">
+                            <div class="card-wrapper">
+                                <div class="card">
+                                    <div class="card-inner">
+                                        <a href="#">
+                                            <div class="card-media" id="card-media">
+                                                <div class="media-hover-effect">
+                                                    <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
+                                                </div>
+                                                <div class="media">
+                                                    <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-information">
+                                            <h3 class="card-heading-h3">
+                                                <a href="#">
+                                                    4D - 0.07mm - С, Сс, D извивка 500бр.
+                                                </a>
+                                            </h3>
+                                            <span class="price-item">
+                                                Цена 16.56 лв
+                                            </span>
+                                            <button class="see-more-btn">Повече информация</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="product-item">
+                            <div class="card-wrapper">
+                                <div class="card">
+                                    <div class="card-inner">
+                                        <a href="#">
+                                            <div class="card-media" id="card-media">
+                                                <div class="media-hover-effect">
+                                                    <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
+                                                </div>
+                                                <div class="media">
+                                                    <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-information">
+                                            <h3 class="card-heading-h3">
+                                                <a href="#">
+                                                    4D - 0.07mm - С, Сс, D извивка 500бр.
+                                                </a>
+                                            </h3>
+                                            <span class="price-item">
+                                                Цена 16.56 лв
+                                            </span>
+                                            <button class="see-more-btn">Повече информация</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
-        <section class="products">
-            <h1>Ръчно изработени готови снопчета за миглопластика</h1>
-            <p>Разгледайте нашата гама от висококачествени, ръчно изработени ветрила на мигли, предназначени за
-                професионалисти в областта на красотата.</p>
-            <div class="product-colection">
-                <ul class="products-list">
-                    <li class="product-item">
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="card-inner">
-                                    <a href="#">
-                                        <div class="card-media" id="card-media">
-                                            <div class="media-hover-effect">
-                                                <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
-                                            </div>
-                                            <div class="media">
-                                                <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-information">
-                                        <h3 class="card-heading-h3">
-                                            <a href="#">
-                                                4D - 0.07mm - С, Сс, D извивка 500бр.
-                                            </a>
-                                        </h3>
-                                        <span class="price-item">
-                                            Цена 16.56 лв
-                                        </span>
-                                        <button class="see-more-btn">Повече информация</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="card-inner">
-                                    <a href="#">
-                                        <div class="card-media" id="card-media">
-                                            <div class="media-hover-effect">
-                                                <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
-                                            </div>
-                                            <div class="media">
-                                                <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-information">
-                                        <h3 class="card-heading-h3">
-                                            <a href="#">
-                                                4D - 0.07mm - С, Сс, D извивка 500бр.
-                                            </a>
-                                        </h3>
-                                        <span class="price-item">
-                                            Цена 16.56 лв
-                                        </span>
-                                        <button class="see-more-btn">Повече информация</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="card-inner">
-                                    <a href="#">
-                                        <div class="card-media" id="card-media">
-                                            <div class="media-hover-effect">
-                                                <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
-                                            </div>
-                                            <div class="media">
-                                                <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-information">
-                                        <h3 class="card-heading-h3">
-                                            <a href="#">
-                                                4D - 0.07mm - С, Сс, D извивка 500бр.
-                                            </a>
-                                        </h3>
-                                        <span class="price-item">
-                                            Цена 16.56 лв
-                                        </span>
-                                        <button class="see-more-btn">Повече информация</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="product-item">
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="card-inner">
-                                    <a href="#">
-                                        <div class="card-media" id="card-media">
-                                            <div class="media-hover-effect">
-                                                <img src="{% static 'images/product/fans_image-hover.jpg' %}" alt="lash-hoover-box-img">
-                                            </div>
-                                            <div class="media">
-                                                <img src="{% static 'images/product/fans_image.jpg' %}" alt="lash-box-img">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-information">
-                                        <h3 class="card-heading-h3">
-                                            <a href="#">
-                                                4D - 0.07mm - С, Сс, D извивка 500бр.
-                                            </a>
-                                        </h3>
-                                        <span class="price-item">
-                                            Цена 16.56 лв
-                                        </span>
-                                        <button class="see-more-btn">Повече информация</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    </ul>
+                </div>
+            </section>
 
+            <div class="end-colection">
+                <p>✨ Ръчно изработени ветрила за мигли – качеството, което заслужавате!</p>
+                <p>🌟 Подобрете работния си процес и впечатлете клиентите си с нашите професионални ръчно изработени
+                    снопчета за мигли:</p>
+                <ul>
+                    <li>✅ Спестявате време</li>
+                    <li>✅ Поставянето е бързо и лесно</li>
+                    <li>✅ Няма остатъчно лепило – снопчетата имат супер тънка основа</li>
+                    <li>✅ Подходящи както за начинаещи, така и за напреднали lash артисти</li>
                 </ul>
+                <p>🎯 Създайте свобода в работата си и изградете лоялна клиентела с помощта на прецизно оформените ни
+                    ветрила. Те имитират извивката на естествените мигли, по-меки са и с по-добро задържане. Благодарение на
+                    по-дългия си конус и лекото тегло, те:</p>
+                <ul>
+                    <li>✨ Запазват извивката си дълго време</li>
+                    <li>✨ Придават пълен и естествен вид</li>
+                    <li>✨ Идеални са за фини и слаби естествени мигли</li>
+                </ul>
+                <p>💨 Нанесете пълен комплект класически или обемни мигли само за 15-30 минути, вместо стандартните 60–150!
+                    Намалете времето за работа без компромис с крайния резултат – пухкав и драматичен ефект.</p>
+                <p>🔴‼ Поддържаме наличности</p>
+                <p>🔴‼ Бърза доставка</p>
+                <p><a href="https://www.facebook.com/yourpage" class="message-facebook"><strong><i class="fa-brands fa-facebook"></i></strong></a>
+                    ПОРЪЧАЙ СЕГА на лично съобщение
+                </p>
+                <p>📞 Или се свържи с нас на: 087 532 5203</p>
+                <p>💖 Изберете качество, което работи за вас и вашите клиенти – създадено с грижа и професионализъм.</p>
             </div>
-        </section>
 
-        <div class="end-colection">
-            <p>✨ Ръчно изработени ветрила за мигли – качеството, което заслужавате!</p>
-            <p>🌟 Подобрете работния си процес и впечатлете клиентите си с нашите професионални ръчно изработени
-                снопчета за мигли:</p>
-            <ul>
-                <li>✅ Спестявате време</li>
-                <li>✅ Поставянето е бързо и лесно</li>
-                <li>✅ Няма остатъчно лепило – снопчетата имат супер тънка основа</li>
-                <li>✅ Подходящи както за начинаещи, така и за напреднали lash артисти</li>
-            </ul>
-            <p>🎯 Създайте свобода в работата си и изградете лоялна клиентела с помощта на прецизно оформените ни
-                ветрила. Те имитират извивката на естествените мигли, по-меки са и с по-добро задържане. Благодарение на
-                по-дългия си конус и лекото тегло, те:</p>
-            <ul>
-                <li>✨ Запазват извивката си дълго време</li>
-                <li>✨ Придават пълен и естествен вид</li>
-                <li>✨ Идеални са за фини и слаби естествени мигли</li>
-            </ul>
-            <p>💨 Нанесете пълен комплект класически или обемни мигли само за 15-30 минути, вместо стандартните 60–150!
-                Намалете времето за работа без компромис с крайния резултат – пухкав и драматичен ефект.</p>
-            <p>🔴‼ Поддържаме наличности</p>
-            <p>🔴‼ Бърза доставка</p>
-            <p><a href="https://www.facebook.com/yourpage" class="message-facebook"><strong><i class="fa-brands fa-facebook"></i></strong></a>
-                ПОРЪЧАЙ СЕГА на лично съобщение
-            </p>
-            <p>📞 Или се свържи с нас на: 087 532 5203</p>
-            <p>💖 Изберете качество, което работи за вас и вашите клиенти – създадено с грижа и професионализъм.</p>
-        </div>
+            <section class="contact-us">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or inquiries, feel free to reach out!</p>
+                <form action="#" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <input type="submit" value="Submit">
+                </form>
+            </section>
 
-        <section class="contact-us">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or inquiries, feel free to reach out!</p>
-            <form action="#" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-                <input type="submit" value="Submit">
-            </form>
-        </section>
+            <section class="follow-us">
+                <h2>Follow Us</h2>
+                <p>Stay updated with our latest products and offers!</p>
+                <ul>
+                    <li><a href="https://www.instagram.com/yourpage">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/yourpage">Facebook</a></li>
+                    <li><a href="https://www.twitter.com/yourpage">Twitter</a></li>
+                    <li><a href="https://www.pinterest.com/yourpage">Pinterest</a></li>
+                </ul>
+            </section>
 
-        <section class="follow-us">
-            <h2>Follow Us</h2>
-            <p>Stay updated with our latest products and offers!</p>
-            <ul>
-                <li><a href="https://www.instagram.com/yourpage">Instagram</a></li>
-                <li><a href="https://www.facebook.com/yourpage">Facebook</a></li>
-                <li><a href="https://www.twitter.com/yourpage">Twitter</a></li>
-                <li><a href="https://www.pinterest.com/yourpage">Pinterest</a></li>
-            </ul>
-        </section>
+            <section class="testimonials">
+                <h2>Testimonials</h2>
+                <p>"These eyelash fans are the best I've ever used! Highly recommend!" - Sarah L.</p>
+                <p>"Absolutely love the quality and design of these fans!" - Jessica M.</p>
+                <p>"Perfect for creating stunning volume lashes!" - Emily R.</p>
+            </section>
 
-        <section class="testimonials">
-            <h2>Testimonials</h2>
-            <p>"These eyelash fans are the best I've ever used! Highly recommend!" - Sarah L.</p>
-            <p>"Absolutely love the quality and design of these fans!" - Jessica M.</p>
-            <p>"Perfect for creating stunning volume lashes!" - Emily R.</p>
-        </section>
+            <section class="faq">
+                <h2>Frequently Asked Questions</h2>
+                <p><strong>Q: Are the eyelash fans reusable?</strong></p>
+                <p>A: Yes, our eyelash fans are designed for multiple uses with proper care.</p>
+                <p><strong>Q: How do I care for my eyelash fans?</strong></p>
+                <p>A: Store them in a cool, dry place and avoid exposure to moisture.</p>
+                <p><strong>Q: Can I customize my order?</strong></p>
+                <p>A: Yes, we offer customization options for bulk orders. Please contact us for more details.</p>
+            </section>
 
-        <section class="faq">
-            <h2>Frequently Asked Questions</h2>
-            <p><strong>Q: Are the eyelash fans reusable?</strong></p>
-            <p>A: Yes, our eyelash fans are designed for multiple uses with proper care.</p>
-            <p><strong>Q: How do I care for my eyelash fans?</strong></p>
-            <p>A: Store them in a cool, dry place and avoid exposure to moisture.</p>
-            <p><strong>Q: Can I customize my order?</strong></p>
-            <p>A: Yes, we offer customization options for bulk orders. Please contact us for more details.</p>
-        </section>
+            <section class="shipping-returns">
+                <h2>Shipping and Returns</h2>
+                <p>We offer worldwide shipping. Returns are accepted within 30 days of purchase.</p>
+            </section>
 
-        <section class="shipping-returns">
-            <h2>Shipping and Returns</h2>
-            <p>We offer worldwide shipping. Returns are accepted within 30 days of purchase.</p>
-        </section>
+            <section class="payment-methods">
+                <h2>Payment Methods</h2>
+                <p>We accept all major credit cards, PayPal, and bank transfers.</p>
+            </section>
 
-        <section class="payment-methods">
-            <h2>Payment Methods</h2>
-            <p>We accept all major credit cards, PayPal, and bank transfers.</p>
-        </section>
+            <section class="privacy-policy">
+                <h2>Privacy Policy</h2>
+                <p>Your privacy is important to us. We do not share your information with third parties.</p>
+            </section>
 
-        <section class="privacy-policy">
-            <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. We do not share your information with third parties.</p>
-        </section>
+            <section class="terms-conditions">
+                <h2>Terms and Conditions</h2>
+                <p>Please read our terms and conditions before making a purchase.</p>
+            </section>
 
-        <section class="terms-conditions">
-            <h2>Terms and Conditions</h2>
-            <p>Please read our terms and conditions before making a purchase.</p>
-        </section>
-
-        <section class="about-us">
-            <h2>About Us</h2>
-            <p>We are a team of passionate beauty professionals dedicated to providing high-quality eyelash products.
-            </p>
-            <p>Our mission is to enhance beauty and confidence through our handmade eyelash fans.</p>
-        </section>
-
+            <section class="about-us">
+                <h2>About Us</h2>
+                <p>We are a team of passionate beauty professionals dedicated to providing high-quality eyelash products.
+                </p>
+                <p>Our mission is to enhance beauty and confidence through our handmade eyelash fans.</p>
+            </section>
+        {% endblock body %}
         <footer class="footer">
             <p>&copy; 2025 Handmade Eyelash FANS. All rights reserved.</p>
         </footer>
     </div>
+
+    {% block extra_body %}{% endblock extra_body %}
     <script src="{% static 'js/base/base.js' %}"></script>
 </body>
 

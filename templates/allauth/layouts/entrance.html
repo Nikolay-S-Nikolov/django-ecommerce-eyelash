@@ -1,0 +1,18 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n allauth %}
+{% block body %}
+    <div class="col col-lg-4">
+        {% if messages %}
+            {% for message in messages %}
+                {% element alert level=message.tags %}
+                    {% slot message %}
+                        {{ message }}
+                    {% endslot %}
+                {% endelement %}
+            {% endfor %}
+        {% endif %}
+        <div id="content" class="p-5">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

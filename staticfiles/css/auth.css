@@ -343,7 +343,7 @@ body.auth-scope #content input[type="checkbox"] {
   transform: translateY(1px);
 }
 
-/* Бутона за изпращане (няма клас – стилизираме директно) */
+/* Бутони(няма клас – стилизирам директно) */
 body.auth-scope #content button[type="submit"] {
   width: 100%;
   margin-top: 0.25rem;
@@ -514,4 +514,37 @@ body.auth-scope main #content {
 body.auth-scope aside.text-bg-dark {
   background: color-mix(in oklab, var(--color-primary-soft) 50%, var(--color-bg)) !important;
   color: var(--color-text) !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-scope #content a[title="Google"] {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  text-align: center;
+  background: var(--color-primary-deep);
+  color: #fff;
+  border: 2px solid var(--color-primary-deep);
+  border-radius: 9999px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color .2s ease, border-color .2s ease, transform .02s ease;
+}
+
+.auth-scope #content a[title="Google"]:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
 }

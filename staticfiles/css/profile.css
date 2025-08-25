@@ -1,0 +1,147 @@
+.profile-info{
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th {
+    width: 30%;
+    text-align: left;
+    padding: 10px;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+td {
+    width: 70%;
+    padding: 5px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.profile-picture{
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid grey;
+    display: block;
+}
+
+.profile-picture-cell {
+    vertical-align: middle;
+}
+.profile-picture-cell img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid grey;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-actions .btn-edit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 180px;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 180px;
+}
+.btn-delete:hover {
+    background-color: #a71d2a;
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .profile-info {
+        padding: 16px;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 0.95rem;
+    }
+
+    th, td {
+        width: auto;
+    }
+
+    th {
+        width: 40%;
+    }
+
+    .profile-picture,
+    .profile-picture-cell img {
+        max-width: min(140px, 60vw);
+    }
+
+    .profile-actions {
+        justify-content: center;
+    }
+    .profile-actions .btn-edit,
+    .profile-actions .btn-delete {
+        flex: 1 1 100%;
+        justify-content: center;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    th {
+        font-size: 0.9rem;
+    }
+    td {
+        font-size: 0.95rem;
+    }
+
+    .profile-info {
+        padding: 12px;
+    }
+    .table {
+        border-spacing: 0;
+    }
+}

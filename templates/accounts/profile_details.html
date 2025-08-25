@@ -1,0 +1,52 @@
+{% extends "allauth/layouts/manage.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% translate "Profile" %}{% endblock %}
+{% block extra_head_script %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+ {% endblock %}
+{% block content %}
+<div class="profile-info">
+    <table class="table">
+        <tbody>
+                <tr>
+            <th scope="row">Профилна снимка:</th>
+            <td class="profile-picture-cell">
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture }}" alt="Профилна снимка"
+                         class="profile-picture"
+                         style="max-width: 150px;">
+                {% else %}
+                    <p>Нямате качена профилна снимка</p>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Предпочитано име:</th>
+            <td>{{ profile.preferred_name_nickname }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Email:</th>
+            <td>{{ profile.user.email }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Телефонен номер:</th>
+            <td>{{ profile.phone_number|default:"—" }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="profile-actions">
+{#    <a href="{% url 'edit_profile' %}" class="btn btn-edit">#}
+    <a href="#" class="btn btn-edit">
+        <i class="fas fa-edit"></i> {% translate "Edit Profile" %}
+    </a>
+{#    <a href="{% url 'delete_profile' %}" class="btn btn-delete">#}
+    <a href="#" class="btn btn-delete">
+        <i class="fas fa-trash-alt"></i> {% translate "Delete Profile" %}
+    </a>
+</div>
+{% endblock %}

@@ -15,15 +15,15 @@
 
 </head>
 
-<body>
+<body class="auth-scope">
     <div class="container">
         <header class="header">
-            <a href="/index.html">
+            <a href="{% url 'home' %}">
                 <img src="{% static 'images/base/logo.webp' %}" alt="Handmade Eyelash FANS Logo" class="logo">
             </a>
             <nav class='header-nav'>
                 <ul>
-                    <li><a href="#">Начало</a></li>
+                    <li><a href="{% url 'home' %}">Начало</a></li>
                     <li><a href="#">Продукти</a></li>
                     <li><a href="#">Галерия</a></li>
                     <li><a href="/blog.html">Блог</a></li>
@@ -33,7 +33,8 @@
             </nav>
             <section class="header-follow-us">
                 <div class="header-right">
-                            <form method="post" class="lang-switcher" action="{% url 'set_language' %}">
+                    <!--  to check if lang-switcher need to be implemented -->
+                            <!-- <form method="post" class="lang-switcher" action="{% url 'set_language' %}">
                                 {% csrf_token %}
                                 {% get_available_languages as LANGUAGES %}
                                 {% get_current_language as LANGUAGE_CODE %}
@@ -50,9 +51,10 @@
                                                 value="{{ lang.code }}">{{ lang.name_local }}</option>
                                     {% endfor %}
                                 </select>
-                            </form>
+                            </form> -->
                             {% if user.is_authenticated %}
-                                <a href="{% url 'account_logout' %}" class="btn btn-danger">{% translate "Sign Out" %}</a>
+                                <a href="{% url 'account_logout' %}" class="btn btn-danger">Изход</a>
+                                <a href="{% url 'profile_details' %}" class="btn">Профил</a>
                             {% else %}
                                 <a href="{% url 'account_login' %}" class="btn btn-outline-light">{% translate "Sign In" %}</a>
                                 {% url 'account_signup' as signup_url_ %}
@@ -300,7 +302,7 @@
                 </p>
                 <p>Our mission is to enhance beauty and confidence through our handmade eyelash fans.</p>
             </section>
-        {% endblock body %}
+        {% endblock %}
         <footer class="footer">
             <p>&copy; 2025 Handmade Eyelash FANS. All rights reserved.</p>
         </footer>

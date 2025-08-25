@@ -21,6 +21,6 @@ urlpatterns = [
     path("", include('lash_store.common.urls')),
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
+    path("profile/", include("lash_store.accounts.url")),
     path("i18n/", include("django.conf.urls.i18n")),
-
 ]

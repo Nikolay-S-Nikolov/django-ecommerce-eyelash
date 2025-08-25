@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic as views
-# Create your views here.
-from django.http import HttpResponse
+from lash_store.utils.user_mixins import GetProfileIdMixin
 
-def home(request):
-    return HttpResponse("Начална страница")
+User_model = get_user_model()
 
+class ProfileDetailsView(LoginRequiredMixin,GetProfileIdMixin,views.DetailView):
+    template_name = 'accounts/profile_details.html'
+    model = User_model
 
-class IndexView(views.TemplateView):
-    template_name = 'base.html'

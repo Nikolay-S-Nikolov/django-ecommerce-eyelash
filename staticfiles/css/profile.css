@@ -35,20 +35,15 @@ td {
     max-width: 150px;
     width: 100%;
     height: auto;
-    border-radius: 50%;
+    border-radius: 5%;
     border: 2px solid grey;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     display: block;
+    margin: 0 auto;
 }
 
 .profile-picture-cell {
     vertical-align: middle;
-}
-.profile-picture-cell img {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    border: 2px solid grey;
 }
 
 .profile-actions {

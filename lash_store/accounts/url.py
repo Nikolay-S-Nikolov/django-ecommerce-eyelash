@@ -1,9 +1,8 @@
-from django.urls import path
-from . import views
-from .views import IndexView
+from django.urls import path, include
+
+from lash_store.accounts.views import ProfileDetailsView, ProfileEditView
 
 urlpatterns = [
-    # path("", views.home, name="home"),
-    path("", IndexView.as_view(), name="home"),
-
+    path('', ProfileDetailsView.as_view(), name='profile_details'),
+    path('edit/', ProfileEditView.as_view(), name='edit_profile'),
 ]

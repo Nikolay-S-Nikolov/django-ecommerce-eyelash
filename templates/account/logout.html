@@ -1,0 +1,16 @@
+{% extends "allauth/layouts/entrance.html" %}
+{% load allauth %}
+{% load i18n %}
+
+{% block content %}
+  <h1 class="mb-4 text-center">Изход</h1>
+  <p class="text-center mb-4">Сигурни ли сте, че искате да излезете от акаунта си?</p>
+  <form method="post" action="{% url 'account_logout' %}" class="d-grid gap-2">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button type="submit" class="btn btn-danger">Изход</button>
+    <a href="/" class="btn btn-secondary">Отказ</a>
+  </form>
+{% endblock %}

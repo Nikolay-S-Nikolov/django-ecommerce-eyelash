@@ -307,7 +307,7 @@ body.auth-scope #content p {
   margin: 0.5rem 0 1rem 0;
 }
 
-/* Формови елементи (съобразени с текущата ти палитра) */
+/* Формови елементи (съобразени с текущата палитра) */
 body.auth-scope #content label {
   display: block;
   font-weight: 500;
@@ -318,6 +318,7 @@ body.auth-scope #content label {
 body.auth-scope #content input[type="email"],
 body.auth-scope #content input[type="password"],
 body.auth-scope #content input[type="text"],
+body.auth-scope #content input[type="url"],
 body.auth-scope #content select {
   width: 100%;
   padding: 10px 12px;
@@ -332,6 +333,7 @@ body.auth-scope #content select {
 body.auth-scope #content input[type="email"]:focus,
 body.auth-scope #content input[type="password"]:focus,
 body.auth-scope #content input[type="text"]:focus,
+body.auth-scope #content input[type="url"]:focus,
 body.auth-scope #content select:focus {
   outline: none;
   border-color: var(--color-primary);

@@ -1,0 +1,7 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name %}Здравейте от {{ site_name }}!{% endblocktrans %}
+
+{% block content %}{% endblock content %}
+
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Благодарим, че използвате {{ site_name }}!
+{{ site_domain }}{% endblocktrans %}
+{% endautoescape %}

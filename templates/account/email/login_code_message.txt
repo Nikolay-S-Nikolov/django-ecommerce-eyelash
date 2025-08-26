@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktranslate %}Вашият код за вход е по-долу. Моля, въведете го в отворения прозорец на браузъра.{% endblocktranslate %}{% endautoescape %}
+
+{{ code }}
+
+{% blocktranslate %}Ако не сте инициирали това действие, можете спокойно да игнорирате това писмо.{% endblocktranslate %}{% endblock content %}

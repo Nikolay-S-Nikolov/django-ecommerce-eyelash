@@ -1,0 +1,4 @@
+{% extends "account/email/base_notification.txt" %}
+{% load i18n %}
+
+{% block notification_message %}{% blocktrans %}Имейлът ви беше променен от {{ from_email }} на {{ to_email }}.{% endblocktrans %}{% endblock notification_message %}

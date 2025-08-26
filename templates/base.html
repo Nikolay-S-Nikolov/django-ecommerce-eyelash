@@ -56,10 +56,10 @@
                                 <a href="{% url 'account_logout' %}" class="btn btn-danger">Изход</a>
                                 <a href="{% url 'profile_details' %}" class="btn">Профил</a>
                             {% else %}
-                                <a href="{% url 'account_login' %}" class="btn btn-outline-light">{% translate "Sign In" %}</a>
+                                <a href="{% url 'account_login' %}" class="btn btn-outline-light">Вход</a>
                                 {% url 'account_signup' as signup_url_ %}
                                 {% if signup_url_ %}
-                                    <a href="{{ signup_url_ }}" class="btn btn-success">{% translate "Sign Up" %}</a>
+                                    <a href="{{ signup_url_ }}" class="btn btn-success">Регистрация</a>
                                 {% endif %}
                             {% endif %}
                         </div>

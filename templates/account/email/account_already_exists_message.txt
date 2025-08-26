@@ -1,0 +1,12 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans %}Получавате този имейл, защото вие или някой друг се опита да се регистрира с
+имейл адрес:
+
+{{ email }}
+
+Въпреки това, акаунт с този имейл адрес вече съществува. Ако сте забравили за него,
+моля, използвайте процедурата за възстановяване на парола:
+
+{{ password_reset_url }}{% endblocktrans %}{% endautoescape %}{% endblock content %}

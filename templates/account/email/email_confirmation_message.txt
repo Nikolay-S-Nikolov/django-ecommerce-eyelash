@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktranslate with site_name=current_site.name site_domain=current_site.domain %}Получавате този имейл, защото потребителят {{ user_display }} е посочил вашия имейл адрес, за да регистрира акаунт в {{ site_domain }}.{% endblocktranslate %}
+
+{% if code %}{% blocktranslate %}Вашият код за потвърждение на имейл е по-долу. Моля, въведете го в отворения прозорец на браузъра.{% endblocktranslate %}
+
+{{ code }}{% else %}{% blocktranslate %}За да потвърдите, че това е вярно, посетете {{ activate_url }}{% endblocktranslate %}{% endif %}{% endautoescape %}{% endblock content %}

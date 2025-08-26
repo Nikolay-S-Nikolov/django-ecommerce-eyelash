@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}Код за вход беше изпратен до {{recipient}}.{% endblocktrans %}

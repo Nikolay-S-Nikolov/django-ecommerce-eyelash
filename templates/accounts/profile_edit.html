@@ -1,0 +1,29 @@
+{% extends "allauth/layouts/manage.html" %}
+{% load i18n %}
+
+{% block head_title %}Редакция на профил{% endblock %}
+
+{% block content %}
+<h2>Редакция на профил</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+        <label for="id_preferred_name_nickname">Предпочитано име / псевдоним</label>
+        {{ form.preferred_name_nickname.errors }}
+        {{ form.preferred_name_nickname }}
+    </div>
+    <div>
+        <label for="id_phone_number">Телефонен номер</label>
+        {{ form.phone_number.errors }}
+        {{ form.phone_number }}
+    </div>
+    <div>
+        <label for="id_profile_picture">URL на профилна снимка</label>
+        {{ form.profile_picture.errors }}
+        {{ form.profile_picture }}
+    </div>
+    <button type="submit">Запази</button>
+    <a href="{% url 'profile_details' %}">Отказ</a>
+</form>
+{% endblock %}

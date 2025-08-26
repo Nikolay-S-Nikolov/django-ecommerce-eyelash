@@ -8,42 +8,42 @@
                 {% if email_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_email %}nav-link text-white{% endblock %}"
-                           href="{{ email_url_ }}">Change Email</a>
+                           href="{{ email_url_ }}">Промяна на имейл</a>
                     </li>
                 {% endif %}
                 {% url 'account_change_password' as change_password_url_ %}
                 {% if change_password_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_password %}nav-link text-white{% endblock %}"
-                           href="{{ change_password_url_ }}">Change Password</a>
+                           href="{{ change_password_url_ }}">Промяна на парола</a>
                     </li>
                 {% endif %}
                 {% url 'account_change_phone' as phone_url_ %}
                 {% if phone_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_phone %}nav-link text-white{% endblock %}"
-                           href="{{ phone_url_ }}">Change Phone</a>
+                           href="{{ phone_url_ }}">Промяна на телефон</a>
                     </li>
                 {% endif %}
                 {% url 'socialaccount_connections' as connections_url_ %}
                 {% if connections_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_socialaccount %}nav-link text-white{% endblock %}"
-                           href="{{ connections_url_ }}">Third-Party Accounts</a>
+                           href="{{ connections_url_ }}">Използване на Google акаунт</a>
                     </li>
                 {% endif %}
                 {% url 'mfa_index' as mfa_index_url_ %}
                 {% if mfa_index_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_mfa %}nav-link text-white{% endblock %}"
-                           href="{{ mfa_index_url_ }}">Two-Factor Authentication</a>
+                           href="{{ mfa_index_url_ }}">Двуфакторна автентикация</a>
                     </li>
                 {% endif %}
                 {% url 'usersessions_list' as usersessions_list_url_ %}
                 {% if usersessions_list_url_ %}
                     <li class="nav-item">
                         <a class="{% block nav_class_usersessions %}nav-link text-white{% endblock %}"
-                           href="{{ usersessions_list_url_ }}">Sessions</a>
+                           href="{{ usersessions_list_url_ }}">Сесии</a>
                     </li>
                 {% endif %}
             </ul>

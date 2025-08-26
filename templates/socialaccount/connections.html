@@ -1,0 +1,54 @@
+{% extends "socialaccount/base_manage.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Свързани акаунти" %}
+{% endblock head_title %}
+{% block content %}
+    {% element h1 %}
+        {% trans "Свързани акаунти" %}
+    {% endelement %}
+    {% if form.accounts %}
+        {% element p %}
+            {% blocktrans %}Можете да влезете в акаунта си, използвайки някой от следните акаунти на трети страни:{% endblocktrans %}
+        {% endelement %}
+        {% url 'socialaccount_connections' as action_url %}
+        {% element form form=form method="post" action=action_url %}
+            {% slot body %}
+                {% csrf_token %}
+                {% for acc in form.fields.account.choices %}
+                    {% with account=acc.0.instance.get_provider_account %}
+                        {% setvar radio_id %}
+                            id_account_{{ account.account.pk }}
+                        {% endsetvar %}
+                        {% setvar tags %}
+                            socialaccount,{{ account.account.provider }}
+                        {% endsetvar %}
+                        {% element field id=radio_id type="radio" name="account" value=account.account.pk %}
+                            {% slot label %}
+                                {{ account }}
+                                {% element badge tags=tags %}
+                                    {{ account.get_brand.name }}
+                                {% endelement %}
+                            {% endslot %}
+                        {% endelement %}
+                    {% endwith %}
+                {% endfor %}
+            {% endslot %}
+            {% slot actions %}
+                {% element button tags="delete,danger" type="submit" %}
+                    {% trans 'Премахни' %}
+                {% endelement %}
+            {% endslot %}
+        {% endelement %}
+    {% else %}
+        {% element p %}
+            {% trans 'В момента нямате свързани акаунти на трети страни към този акаунт.' %}
+        {% endelement %}
+    {% endif %}
+    {% element h2 %}
+        {% trans 'Добавяне на акаунт от Google' %}
+    {% endelement %}
+    {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
+    {% include "socialaccount/snippets/login_extra.html" %}
+{% endblock content %}

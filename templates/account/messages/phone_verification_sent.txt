@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}Код за потвърждение беше изпратен на {{phone}}.{% endblocktrans %}

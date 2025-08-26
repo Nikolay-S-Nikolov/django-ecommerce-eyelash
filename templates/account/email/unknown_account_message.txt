@@ -1,0 +1,10 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktranslate %}Получавате този имейл, защото вие или някой друг се опита да достъпи акаунт с имейл {{ email }}. Въпреки това, нямаме запис за такъв акаунт в нашата база данни.{% endblocktranslate %}
+
+{% blocktranslate %}Ако не сте инициирали това действие, можете спокойно да игнорирате това писмо.{% endblocktranslate %}
+
+{% blocktranslate %}Ако все пак сте вие, можете да се регистрирате, използвайки връзката по-долу.{% endblocktranslate %}
+
+{{ signup_url }}{% endautoescape %}{% endblock content %}

@@ -21,9 +21,7 @@ class Product(models.Model):
         max_digits=6, 
         decimal_places=2,
         )
-    
-    image = models.URLField()
-    
+
     stock = models.PositiveIntegerField()
     
     units_sold = models.PositiveIntegerField(
@@ -36,6 +34,10 @@ class Product(models.Model):
         null=True,
         blank=True,
         )
+
+    slug = models.SlugField(
+        unique= True,
+    )
     
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -53,3 +55,13 @@ class Product(models.Model):
             self.slug = slugify(self.name)  
         super().save(*args, **kwargs)
         
+class ProductImages(models.Model):
+    product = models.ForeignKey(
+        "Product",
+        on_delete=models.CASCADE,
+        related_name='images',
+    )
+    image = models.ImageField(upload_to='products/')
+
+    def __str__(self):
+        return f"Image for {self.product.name}"

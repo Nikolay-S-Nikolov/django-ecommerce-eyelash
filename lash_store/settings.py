@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # my apps
     'lash_store.accounts.apps.AccountsConfig',
     'lash_store.common.apps.CommonConfig',
-    'lash_store.product.apps.ProductConfig'
+    'lash_store.product.apps.ProductConfig',
 
     # installed apps
     'allauth',
@@ -191,6 +191,9 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = BASE_DIR / "static_files/"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media_images/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

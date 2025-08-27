@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # my apps
     'lash_store.accounts.apps.AccountsConfig',
     'lash_store.common.apps.CommonConfig',
+    'lash_store.product.apps.ProductConfig'
 
     # installed apps
     'allauth',

@@ -37,7 +37,7 @@ td {
     height: auto;
     border-radius: 5%;
     border: 2px solid grey;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     display: block;
     margin: 0 auto;
 }

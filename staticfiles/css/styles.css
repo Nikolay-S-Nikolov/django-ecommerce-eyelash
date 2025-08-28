@@ -517,14 +517,6 @@ form.lang-switcher {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 15px;
-    }
-
     .header {
         flex-direction: column;
         align-items: center;
@@ -630,10 +622,6 @@ form.lang-switcher {
     }
 
     .header {
-        padding: 10px;
-    }
-
-    .container {
         padding: 10px;
     }
 

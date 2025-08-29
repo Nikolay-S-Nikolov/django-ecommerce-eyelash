@@ -31,11 +31,14 @@
         <p>{{ product.description }}</p>
 
         {# <form method="post" action="{% url 'add_to_cart' product.slug %}">#}
-            <form method="post" action="#">
+            <form method="post" class="add-to-cart-form" action="#">
                 {% csrf_token %}
-                <p>Остават само {{product.stock}} броя</p>
-                <div class="quantity-wrapper">                    
-                        <!-- Add a condition that when the  product.stock=0 to change the arae with aout of 
+                <div class="quantity-text-wrapper">
+                    <p>Изберете количество</p>
+                    <p><i class="fa-solid fa-box-open"></i> Остават само {{product.stock}} броя</p>
+                </div>
+                <div class="quantity-wrapper">
+                    <!-- Add a condition that when the  product.stock=0 to change the arae with aout of 
                          stock message and hide or disable the add to card option -->
                     <button type="button" class="qty-btn" data-action="decrease"
                         aria-label="Намали количество">–</button>

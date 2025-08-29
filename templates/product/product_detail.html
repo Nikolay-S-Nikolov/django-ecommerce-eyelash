@@ -2,7 +2,7 @@
 {% load static %}
 {% block head_title %}{{ product.name }}{% endblock %}
 {% block extra_head_script %}
-    <link rel="stylesheet" href="{% static 'css/product_description.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_description.css' %}">
 {% endblock %}
 {% block body %}
 {%include 'partials/messages.html' %}
@@ -10,38 +10,48 @@
     <section class="images-section">
         <!-- main image -->
         <div class="main-image-container">
-            <img id="main-image" 
-                 src="{{ product.images.first.image.url }}" 
-                 alt="{{ product.name }}" />
+            <img id="main-image" src="{{ product.images.first.image.url }}" alt="{{ product.name }}" />
         </div>
 
         <!-- small images -->
         <div class="thumbnails-wrapper">
-            <button class="thumb-nav left">&lt;</button>
+            <button class="thumb-nav left"><i class="fa-solid fa-angle-left"></i></button>
             <div class="thumbnails-container">
                 {% for image in product.images.all %}
-                    <img src="{{ image.image.url }}" 
-                         alt="{{ product.name }}" 
-                         class="thumbnail" 
-                         data-full="{{ image.image.url }}">
+                <img src="{{ image.image.url }}" alt="{{ product.name }}" class="thumbnail"
+                    data-full="{{ image.image.url }}">
                 {% endfor %}
             </div>
-            <button class="thumb-nav right">&gt;</button>
+            <button class="thumb-nav right"><i class="fa-solid fa-angle-right"></i></button>
         </div>
     </section>
     <section class="main-content">
         <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
-    {# <form method="post" action="{% url 'add_to_cart' product.slug %}">#}
-        <form method="post" action="">
-            {% csrf_token %}
-            <button type="submit">Add to Cart</button>
-        </form>
-        <a href="{% url 'products' %}">Back to Products</a>
+        <h2>Цена: ${{ product.price }}</h2>
+        <p>{{ product.description }}</p>
+
+        {# <form method="post" action="{% url 'add_to_cart' product.slug %}">#}
+            <form method="post" action="#">
+                {% csrf_token %}
+                <p>Остават само {{product.stock}} броя</p>
+                <div class="quantity-wrapper">                    
+                        <!-- Add a condition that when the  product.stock=0 to change the arae with aout of 
+                         stock message and hide or disable the add to card option -->
+                    <button type="button" class="qty-btn" data-action="decrease"
+                        aria-label="Намали количество">–</button>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}"
+                        aria-live="polite">
+                    <button type="button" class="qty-btn" data-action="increase"
+                        aria-label="Увеличи количество">+</button>
+                </div>
+                <button type="submit" class="add-to-cart">Добави в количката</button>
+            </form>
+            <a href="{% url 'products' %}">Back to Products</a>
     </section>
 </div>
 {% endblock %}
 {% block extra_body %}
-    <script src="{% static 'js/product_details_img.js' %}"></script>
+<script src="{% static 'js/product_details_img.js' %}"></script>
+<script src="{% static 'js/add_to_cart.js' %}"></script>
+<script src="https://kit.fontawesome.com/2176211c5e.js" crossorigin="anonymous"></script>
 {% endblock %}

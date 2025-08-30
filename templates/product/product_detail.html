@@ -28,8 +28,7 @@
     <section class="main-content">
         <h1>{{ product.name }}</h1>
         <h2>Цена: ${{ product.price }}</h2>
-        <p>{{ product.description }}</p>
-
+        <p>{{ product.description|linebreaks }}</p>
         {# <form method="post" action="{% url 'add_to_cart' product.slug %}">#}
             <form method="post" class="add-to-cart-form" action="#">
                 {% csrf_token %}
@@ -40,12 +39,12 @@
                 <div class="quantity-wrapper">
                     <!-- Add a condition that when the  product.stock=0 to change the arae with aout of 
                          stock message and hide or disable the add to card option -->
-                    <button type="button" class="qty-btn" data-action="decrease"
-                        aria-label="Намали количество"><i class="fas fa-minus fa-xs"></i></button>
+                    <button type="button" class="qty-btn" data-action="decrease" aria-label="Намали количество"><i
+                            class="fas fa-minus fa-xs"></i></button>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.stock }}"
                         aria-live="polite">
-                    <button type="button" class="qty-btn" data-action="increase"
-                        aria-label="Увеличи количество"><i class="fas fa-plus fa-xs"></i></button>
+                    <button type="button" class="qty-btn" data-action="increase" aria-label="Увеличи количество"><i
+                            class="fas fa-plus fa-xs"></i></button>
                 </div>
                 <button type="submit" class="add-to-cart">Добави в количката</button>
             </form>

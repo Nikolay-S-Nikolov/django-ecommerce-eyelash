@@ -61,13 +61,14 @@
   display: flex;
   gap: 0.5rem;
   overflow: hidden;
+  /* flex-wrap: nowrap; */
   width: calc(127px * 3 + 1rem);
 }
 
 .thumbnail {
-  flex: 0 0 calc((100% - 1rem) / 3);
+  flex: 0 0 auto;
   display: block;
-  width: 100%;
+  width: calc((100% - 1rem) / 3);
   max-width: 127px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -182,4 +183,21 @@ input[type=number] {
 
 .add-to-cart:hover {
   color: #ff6f91;
+}
+
+@media screen and (max-width: 1024px) {
+  .product-detail {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .images-section {
+    max-width: 100%;
+  }
+
+  
+.main-image-container{
+  max-width: 576px;
+  margin: 0 auto;
+}
 }

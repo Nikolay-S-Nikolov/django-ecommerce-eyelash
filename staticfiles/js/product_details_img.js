@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const thumbnails = document.querySelectorAll(".thumbnail");
     const btnLeft = document.querySelector(".thumb-nav.left");
     const btnRight = document.querySelector(".thumb-nav.right");
+    const thumbnailsContainer = document.querySelector(".thumbnails-container")
 
     let currentIndex = 0;
 
@@ -23,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentIndex > 0) {
             currentIndex--;
             thumbnails[currentIndex].click();
-            thumbnails[currentIndex].scrollIntoView({ behavior: "smooth", inline: "center" });
+            thumbnailsContainer.scrollTo({
+                left: thumbnails[currentIndex].offsetLeft - thumbnailsContainer.offsetLeft,
+                behavior: "smooth"
+            });
         }
     });
 
@@ -31,7 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentIndex < thumbnails.length - 1) {
             currentIndex++;
             thumbnails[currentIndex].click();
-            thumbnails[currentIndex].scrollIntoView({ behavior: "smooth", inline: "center" });
+            thumbnailsContainer.scrollTo({
+                left: thumbnails[currentIndex].offsetLeft - thumbnailsContainer.offsetLeft,
+                behavior: "smooth"
+            });
         }
     });
 

@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock %}
 {% block body %}
 {%include 'partials/messages.html' %}
 <section class="products">
+    <h1>Ръчно изработени готови снопчета за миглопластика</h1>
+    <p>Разгледайте нашата гама от висококачествени, ръчно изработени ветрила на мигли, предназначени за
+        професионалисти в областта на красотата.</p>
     <div class="product-colection">
         <ul class="products-list">
             {% for product in object_list %}
@@ -13,8 +19,7 @@
                             <a href="{% url 'product_details' slug=product.slug %}">
                                 <div class="card-media" id="card-media">
                                     <div class="media-hover-effect">
-                                        <img src="{{ product.images.last.image.url }}"
-                                            alt="lash-hoover-box-img">
+                                        <img src="{{ product.images.last.image.url }}" alt="lash-hoover-box-img">
                                     </div>
                                     <div class="media">
                                         <img src="{{ product.images.first.image.url }}" alt="lash-box-img">
@@ -44,5 +49,5 @@
 </section>
 {% endblock %}
 {% block extra_body %}
-    <script src="{% static 'js/card_details_link.js' %}"></script>
+<script src="{% static 'js/card_details_link.js' %}"></script>
 {% endblock %}

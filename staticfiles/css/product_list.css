@@ -1,0 +1,244 @@
+:root {
+    --product_items_gap: 20px;
+    --page-width: min(80rem, 80vw);
+}
+
+/* Top text style */
+.products>h1 {
+    text-align: center;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 30px;
+    padding-top: 18px;
+    font-stretch: expanded;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    line-height: 1.3;
+}
+
+.products>p {
+    text-align: center;
+    padding: 2rem 0;
+    font-weight: 500;
+}
+
+/* End of top text style */
+
+.product-colection {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.product-colection ul.products-list {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 1.3rem;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(25% - var(--product_items_gap));
+    /* Four items per row with gap consideration */
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-wrapper .card {
+    border-radius: 5px;
+    box-shadow: 0 0 0.3rem 0.3rem rgba(255, 213, 220, 0.3);
+    transition: transform 0.5s, box-shadow 1s;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.3rem 1rem 0.3rem rgba(0, 0, 0, 0.3);
+}
+
+.card-heading-h3 a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(84, 84, 84);
+}
+
+
+.media-hover-effect {
+    display: none;
+}
+
+.card-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.card-information * {
+    color: rgb(84, 84, 84);
+    font-weight: 500;
+}
+
+.card-information .see-more-btn {
+    background-color: #ffd5dc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.card-information .see-more-btn:hover {
+    background-color: #ffb6c1;
+}
+
+.card-information .see-more-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Product Collection Styles */
+
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-media {
+    overflow: hidden;
+}
+
+.card-media img {
+    aspect-ratio: 1/1;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-media:hover img {
+    transform: scale(1.1);
+    /* Zoom effect on hover */
+}
+
+.card-content {
+    height: 100%;
+    padding: 15px;
+    text-align: center;
+}
+
+.card-inner * {
+    height: 100%;
+}
+
+.card-heading-h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-heading-h3 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.card-heading-h3 a:hover {
+    color: #ff6f91;
+    /* Highlight color on hover */
+}
+
+.price-item {
+    display: block;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.see-more-btn {
+    background-color: #ff6f91;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.see-more-btn:hover {
+    background-color: #e05578;
+}
+
+/* min-width: 768px, 1024px, 1280px, 1440px. */
+@media (max-width: 1440px) {
+    .product-colection ul.products-list {
+        max-width: 95vw;
+    }
+}
+
+@media (max-width: 1280px) {
+    .product-colection ul.products-list {
+        gap: 1rem;
+    }
+
+    .product-item {
+        width: calc(33.333% - var(--product_items_gap));
+        /* Three items per row */
+    }
+}
+
+@media (max-width: 1024px) {
+    .product-item {
+        width: calc(50% - var(--product_items_gap));
+        /* Two items per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-colection {
+        padding: 0;
+    }
+
+    .card-content {
+        padding: 0;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    .card-information {
+        padding: 0.3rem;
+        gap: 0.3rem;
+    }
+
+    .card-heading-h3 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .price-item {
+        margin: 0;
+    }
+
+    .card-information .see-more-btn {
+        font-size: 0.9rem;
+        padding: 4px 6px;
+    }
+}

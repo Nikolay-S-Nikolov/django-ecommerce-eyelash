@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.text import slugify
 
@@ -49,10 +50,18 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+    def clean(self):
+        if self.__class__.objects.filter(name=self.name).exclude(pk=self.pk).exists():
+            raise ValidationError({'name': 'Продукт с това име вече съществува.'})
+
+        generated_slug = slugify(self.name)
+        if self.__class__.objects.filter(slug=generated_slug).exclude(pk=self.pk).exists():
+            raise ValidationError({'slug': 'Генерираният slug вече съществува.'})
+
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.slug = slugify(self.name)  
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
         
 class ProductImages(models.Model):

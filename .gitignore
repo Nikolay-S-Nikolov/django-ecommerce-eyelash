@@ -4,6 +4,8 @@
 # Extra files
 templates/base_extended.html
 .gitignore
+media_images/products/*.*
+staticfiles/images/product/*.*
 
 ### Django ###
 *.log

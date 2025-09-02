@@ -1,5 +1,3 @@
-from tkinter.font import names
-
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase

@@ -27,7 +27,7 @@
     </section>
     <section class="main-content">
         <h1>{{ product.name }}</h1>
-        <h2>Цена: ${{ product.price }}</h2>
+        <h2>Цена: {{ product.price }} лв</h2>
         <p>{{ product.description|linebreaks }}</p>
         {# <form method="post" action="{% url 'add_to_cart' product.slug %}">#}
             <form method="post" class="add-to-cart-form" action="#">

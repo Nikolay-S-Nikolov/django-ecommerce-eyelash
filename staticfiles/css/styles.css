@@ -27,6 +27,9 @@ body {
     max-width: 100%;
     margin: auto;
     background-color: #fff;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
     /* border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
@@ -333,198 +336,8 @@ form.lang-switcher {
   box-shadow: 0 0 0 2px rgba(255,255,255,.7);
 } */
 
-
-
-/* product card */
-
-.products>h1 {
-    text-align: center;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 30px;
-    padding-top: 18px;
-    font-stretch: expanded;
-    letter-spacing: 2px;
-    word-spacing: 3px;
-    line-height: 1.3;
-}
-
-.products>p {
-    text-align: center;
-    padding: 2rem 0;
-    font-weight: 500;
-}
-
-.product-colection {
-    padding: 20px;
-    background-color: #f9f9f9;
-}
-
-.product-colection ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.3rem;
-    flex-wrap: wrap;
-}
-
-.card-wrapper .card {
-    border-radius: 5px;
-    box-shadow: 0 0 0.3rem 0.3rem rgba(255, 213, 220, 0.3);
-    max-width: 333px;
-
-    transition: transform 0.5s, box-shadow 1s;
-    overflow: hidden;
-}
-
-.card-wrapper .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0.3rem 1rem 0.3rem rgba(0, 0, 0, 0.3);
-}
-
-.card-heading-h3 a {
-    font-size: 1rem;
-    font-weight: 500;
-    color: rgb(84, 84, 84);
-}
-
-
-.media-hover-effect {
-    display: none;
-}
-
-.card-information {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    gap: 0.8rem;
-    height: 100%;
-}
-
-.card-information * {
-    color: rgb(84, 84, 84);
-    font-weight: 500;
-}
-
-.card-information .see-more-btn {
-    background-color: #ffd5dc;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.card-information .see-more-btn:hover {
-    background-color: #ffb6c1;
-}
-
-.card-information .see-more-btn a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Product Collection Styles */
-.products-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between items */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.product-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.card-media {
-    position: relative;
-    overflow: hidden;
-    max-height: 433px;
-    background-color: #f4f4f4;
-}
-
-.card-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.card-media:hover img {
-    transform: scale(1.1); /* Zoom effect on hover */
-}
-
-.card-content {
-    padding: 15px;
-    text-align: center;
-}
-
-.card-heading-h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.card-heading-h3 a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-.card-heading-h3 a:hover {
-    color: #ff6f91; /* Highlight color on hover */
-}
-
-.price-item {
-    display: block;
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.see-more-btn {
-    background-color: #ff6f91;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.see-more-btn:hover {
-    background-color: #e05578;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 15px;
-    }
-
     .header {
         flex-direction: column;
         align-items: center;
@@ -590,21 +403,8 @@ form.lang-switcher {
         font-size: 0.9rem; /* Slightly smaller font size */
     }
 
-    .card-media {
-        height: 380px; /* Adjust height for smaller screens */
-    }
-
-    .card-heading-h3 {
-        font-size: 1rem;
-    }
-
     .price-item {
         font-size: 0.9rem;
-    }
-
-    .see-more-btn {
-        font-size: 0.9rem;
-        padding: 8px 12px;
     }
 }
 
@@ -633,10 +433,6 @@ form.lang-switcher {
         padding: 10px;
     }
 
-    .container {
-        padding: 10px;
-    }
-
     input[type="text"],
     input[type="email"] {
         font-size: 0.9rem;
@@ -661,24 +457,6 @@ form.lang-switcher {
 
     .header-nav ul li a {
         font-size: 0.8rem; /* Smaller font size for mobile */
-    }
-
-    .card-media {
-        min-height: 300px; /* Further adjust height for mobile */
-        
-    }
-
-    .card-heading-h3 {
-        font-size: 0.9rem;
-    }
-
-    .price-item {
-        font-size: 0.8rem;
-    }
-
-    .see-more-btn {
-        font-size: 0.8rem;
-        padding: 6px 10px;
     }
 }
 

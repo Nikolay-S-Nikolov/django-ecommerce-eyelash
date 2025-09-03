@@ -4,6 +4,10 @@
 }
 
 /* Top text style */
+.products{
+    flex: 2;
+}
+
 .products>h1 {
     text-align: center;
     font-weight: 500;

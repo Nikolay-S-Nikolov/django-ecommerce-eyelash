@@ -1,0 +1,200 @@
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
+from django.db import models
+from lash_store.product.models import Product
+
+UserModel = get_user_model()
+
+class Order(models.Model):
+    PRICE_MAX_DIGITS = 6
+    PRICE_DECIMAL_PLACES = 2
+    MAX_STATUS_LENGTH = 10
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Processing', 'Processing'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    ]
+    PAYMENT_STATUS_CHOICES = [
+        ('unpaid', 'Unpaid'),
+        ('paid', 'Paid'),
+        ('refunded', 'Refunded'),
+    ]
+
+    customer = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
+    status = models.CharField(
+        max_length=MAX_STATUS_LENGTH,
+        choices=STATUS_CHOICES,
+        default='Pending',
+    )
+
+    total_price = models.DecimalField(
+        max_digits=PRICE_MAX_DIGITS,
+        decimal_places=PRICE_DECIMAL_PLACES,
+    )
+
+    payment_status = models.CharField(
+        max_length=10,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='unpaid',
+    )
+
+    note = models.TextField(blank=True, null=True)
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
+
+    def __str__(self):
+        return f"Order #{self.id} - status: {self.status}"
+
+    @property
+    def calculated_total_price(self):
+        return sum(item.price * item.quantity for item in self.items.all())
+
+    def save(self, *args, **kwargs):
+        # price calculation
+        self.total_price = self.calculated_total_price
+        super().save(*args, **kwargs)
+
+    def clean(self):
+        shipping = getattr(self, 'shippingaddress', None)
+        if shipping and shipping.payment_method == 'bank_payment':
+            if self.status in ['Processing', 'Completed'] and self.payment_status != 'paid':
+                raise ValidationError("Поръчките с банково плащане трябва да бъдат платени преди да се обработят.")
+
+
+class OrderItem(models.Model):
+    """
+    Links products to orders.
+    """
+    PRICE_MAX_DIGITS = 6
+    PRICE_DECIMAL_PLACES = 2
+
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+
+    quantity = models.PositiveIntegerField()
+
+    saved_price = models.DecimalField(
+        max_digits=PRICE_MAX_DIGITS,
+        decimal_places=PRICE_DECIMAL_PLACES,
+    )
+
+    @property
+    def price(self):
+        return self.quantity * self.product.price
+
+    def save(self, *args, **kwargs):
+        # price calculation
+        self.saved_price = self.price
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Ordered {self.quantity} x {self.product}"
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(
+        UserModel,
+        on_delete=models.CASCADE,
+        null=True, blank=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name='items',
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+
+    quantity = models.PositiveIntegerField(
+        default=1,
+    )
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product} in cart"
+
+
+class ShippingAddress(models.Model):
+    MAX_CITY_LENGTH = 50
+    MAX_NAME_LENGTH = 35
+    MAX_PHONE_NUMBER_LENGTH = 10
+    MAX_POSTAL_CODE_LENGTH = 10
+    MAX_PAYMENT_METHOD_LENGTH = 20
+    PAYMENT_CHOICES = [
+        ('pay_on_delivery', 'Pay on Delivery'),
+        ('bank_payment', 'Bank Payment'),
+    ]
+
+    name = models.CharField(
+        max_length=MAX_NAME_LENGTH,
+    )
+
+    phone_number = models.CharField(
+        max_length=MAX_PHONE_NUMBER_LENGTH,
+        validators=[RegexValidator(
+            regex=r"^0\d{9}$",
+            message="Please, enter a valid phone number in the format 0888123456"
+        )]
+    )
+
+    email = models.EmailField()
+
+    customer = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
+
+    order = models.OneToOneField(
+        Order,
+        on_delete=models.CASCADE
+    )
+
+    address = models.TextField()
+
+    city = models.CharField(
+        max_length=MAX_CITY_LENGTH,
+    )
+
+    postal_code = models.CharField(
+        max_length=MAX_POSTAL_CODE_LENGTH,
+    )
+
+    payment_method = models.CharField(
+        max_length=MAX_PAYMENT_METHOD_LENGTH,
+        choices=PAYMENT_CHOICES,
+        default='pay_on_delivery'
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    def __str__(self):
+        return f"Shipping for {self.order}"

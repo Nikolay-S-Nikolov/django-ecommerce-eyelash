@@ -1,0 +1,37 @@
+<div class="toast-window" id="toast" style="display:none; position:fixed; background:#fff; padding:12px 20px; border-radius:8px; color:black;">
+    <header class="centered-text">
+        <span id="toast-message"></span>
+    </header>
+    <button type="button" class="close-button" onclick="hideToast()">
+        <span class="icon"><i class="fas fa-window-close"></i></span>
+    </button>
+    <section class="toast-body">
+        <div class="cart-item">
+            <article class="cart-item">
+                <div class="item-block">
+                    <div class="column-one">
+                        <a href="#" class="image-block text-link" id="toast-product-link">
+                            <picture class="cart-item-image">
+                                <img src="" class="item-image" id="toast-product-image" alt="image" style="max-width: 200px; aspect-ratio: 1/1">
+                            </picture>
+                        </a>
+                    </div>
+                    <div class="column-two">
+                        <div class="item-info-container">
+                            <a href="#" class="name" id="toast-product-name"></a>
+                        </div>
+                        <div class="item-price" id="toast-product-price"></div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="actions">
+            <button type="button" class="go-to-cart-button" onclick="window.location.href='/checkout/cart/'">
+                <span class="label">Премини към кошницата</span>
+            </button>
+            <button type="button" class="continue-shopping-button" onclick="hideToast()">
+                <span class="label">Продължи пазаруването</span>
+            </button>
+        </div>
+    </section>
+</div>

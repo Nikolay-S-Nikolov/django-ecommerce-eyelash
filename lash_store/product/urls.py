@@ -1,5 +1,3 @@
-from itertools import product
-
 from django.urls import path
 from lash_store.product.views import ListProductView, DetailProductView
 

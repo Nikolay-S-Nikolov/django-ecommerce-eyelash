@@ -3,6 +3,7 @@
 {% block head_title %}{{ product.name }}{% endblock %}
 {% block extra_head_script %}
 <link rel="stylesheet" href="{% static 'css/product_description.css' %}">
+<link rel="stylesheet" href="{% static 'css/toast.css' %}">
 {% endblock %}
 {% block body %}
     {% include 'partials/toast.html' %}
@@ -13,7 +14,6 @@
             <div class="main-image-container">
                 <img id="main-image" src="{{ product.images.first.image.url }}" alt="{{ product.name }}" />
             </div>
-
             <!-- small images -->
             <div class="thumbnails-wrapper">
                 <button class="thumb-nav left"><i class="fa-solid fa-angle-left"></i></button>

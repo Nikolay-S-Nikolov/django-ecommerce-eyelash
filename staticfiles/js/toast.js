@@ -6,7 +6,7 @@ function showToast(message, product = null) {
 
     if (product) {
         document.getElementById("toast-product-name").innerText = product.name;
-        document.getElementById("toast-product-price").innerText = product.price + " лв";
+        document.getElementById("toast-product-price").innerText = "Цена: " + product.price + " лв";
         document.getElementById("toast-product-image").src = product.picture;
         document.getElementById("toast-product-link").href = "/product/" + product.slug + "/";
     }

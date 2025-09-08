@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+<div class="cart-container">
+    <div class="cart-details">
+        {% if object_list %}
+        <div class="cart-title">
+            <h2>Количка</h2>
+            <a href="{% url 'products' %}"><span>Продължи пазаруването</span></a>
+        </div>
+        <div class="cart-list">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Продукт</th>
+                        <th></th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cart_item in object_list %}
+                    <tr class="cart-item">
+                        <td class="cart-item-media">
+                            <a href="{% url 'product_details' slug=cart_item.product.slug %}">
+                                <img src="{{cart_item.product.images.first.image.url}}"
+                                    alt="product {{ cart_item.product.name }} image">
+                            </a>
+                        </td>
+                        <td class="cart-item-name">
+                            <a href="{% url 'product_details' slug=cart_item.product.slug %}"
+                                class="details-product-name">{{ cart_item.product.name }}</a>
+                        </td>
+                        <td class="cart-item-quantity">
+                            <div class="cart-item-quantity-wrapper">
+
+                                {# TODO write update_cart_item logic#}
+    {#                            <form method="post" action="{% url 'update_cart_item' pk=item.pk %}" class="form-inline">#}
+                                <div class="quantity-wrapper">
+                                    <button type="button" class="qty-btn" data-action="decrease"
+                                        aria-label="Намали количество"><i class="fas fa-minus fa-2xs"></i></button>
+                                    <input type="number" id="quantity" name="quantity" value="{{ cart_item.quantity }}"
+                                        min="1" max="{{ cart_item.product.stock }}" aria-live="polite">
+                                    <button type="button" class="qty-btn" data-action="increase"
+                                        aria-label="Увеличи количество"><i class="fas fa-plus fa-2xs"></i></button>
+                                </div>
+                                                            {# TODO write remove_cart_item logic#}
+    {#                            <form method="post" action="{% url 'remove_cart_item' pk=item.pk %}" class="form-inline">#}
+                                    {# <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>#}
+                                    {# {% csrf_token %}#}
+                                    {# </form>#}
+                                <div class="remove-button"><i class="fa fa-trash"></i></div>
+                            </div>
+                        </td>
+                        <td class="cart-item-price"><span class="price"> {{ cart_item.product.price }} лв</span></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p>Количката е празна <a href="{% url 'products' %}">Продължи пазаруване</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

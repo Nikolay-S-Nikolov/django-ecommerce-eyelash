@@ -9,6 +9,7 @@ function showToast(message, product = null) {
         document.getElementById("toast-product-price").innerText = "Цена: " + product.price + " лв";
         document.getElementById("toast-product-image").src = product.picture;
         document.getElementById("toast-product-link").href = "/product/" + product.slug + "/";
+        document.getElementById("toast-product-name").href = "/product/" + product.slug + "/";
     }
 
     toast.style.display = "block";

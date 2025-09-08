@@ -5,9 +5,20 @@ from django.views import generic as views
 from lash_store.orders.models import Cart, CartItem
 from lash_store.product.models import Product
 
-
-class CartSummaryView(views.TemplateView):
+class CartSummaryView(views.ListView):
+    model = CartItem
     template_name = 'orders/cart.html'
+    context_object_name = 'object_list'
+
+    def get_queryset(self):
+        cart, created = Cart.objects.get_or_create(user=self.request.user)
+        return cart.items.select_related('product').all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart_items = context['object_list']
+        context['total'] = sum(item.product.price * item.quantity for item in cart_items)
+        return context
 
 cart_summary = CartSummaryView.as_view()
 

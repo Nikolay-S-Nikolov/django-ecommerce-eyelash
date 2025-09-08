@@ -1,0 +1,166 @@
+.cart-container{
+    flex: 2;
+    background-color: #f9f9f9;
+}
+
+.cart-details{
+    max-width: min(80vw, 80rem);
+    margin:0 auto;
+    padding: 2rem 0;
+}
+.cart-title{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th{
+    text-align: left;
+    padding-bottom: 1.5rem;
+}
+
+/*.cart-item{*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*}*/
+.cart-item-media img{
+    max-width: 80px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-item-quantity .cart-item-quantity-wrapper{
+    display: flex;
+}
+
+.quantity-wrapper {
+    flex: 1 1 auto;
+  display: inline-flex;
+    max-width: 200px;
+
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.5rem 0;
+}
+
+.qty-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #ffd5dc;
+  background: #ffd5dc;
+  font-size: 1.8rem;
+      cursor: pointer;
+  line-height: 1;
+  user-select: none;
+  transition: background 0.2s, border-color 0.2s;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+  background: #c07b9a;
+}
+
+#quantity {
+  flex: 2;
+    min-width: 60px;
+    max-width: 100px;
+  height: 2.5rem;
+  padding: 0.25rem;
+  text-align: center;
+  border: 1px solid #ffd5dc;
+  background: #f1f9fc;
+  border-radius: 22px;
+}
+
+#quantity:invalid {
+  border-color: red;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.remove-button{
+    min-width: 3rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+.footer {
+    margin-top: 0;
+}
+
+
+@media (max-width: 768px) {
+  /* Спираме table layout-а */
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td {
+    display: block;
+  }
+
+  /* Скриваме заглавията, защото на мобилно не са нужни */
+  .table thead {
+    display: none;
+  }
+
+  .cart-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .cart-item-media,
+  .cart-item-name {
+    flex: 1 1 40%;
+    display: flex !important;
+    align-items: center;
+  }
+
+  /* Втори ред – количество + цена */
+  .cart-item-quantity,
+  .cart-item-price {
+    flex: 1 1 50%;
+    display: flex !important;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .cart-item-price:before{
+      content: "Цена: ";
+  }
+
+  /* Подреждаме количеството по-хубаво */
+  .cart-item-quantity-wrapper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

@@ -1,7 +1,11 @@
 import json
 
-from django.http import JsonResponse
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.views import generic as views
 
 from lash_store.orders.models import Cart, CartItem
@@ -57,3 +61,18 @@ def add_to_cart_ajax(request, product_id):
             }
         })
     return JsonResponse({"success": False, "message": "Невалидна заявка"})
+
+
+class DeleteCartItemView(LoginRequiredMixin,views.View):
+    def post(self, request, pk):
+        cart_item = get_object_or_404(CartItem, pk=pk, cart__user=request.user)
+
+        if self.request.user != cart_item.cart.user:
+            raise PermissionDenied("You don't have permission to remove this cart item.")
+
+        product_name = cart_item.product.name
+        cart_item.delete()
+        messages.success(request, f"Продукта {product_name} е успешно премахнат от кошницата.")
+        return HttpResponseRedirect(reverse('cart_summary'))
+
+delete_cart_item = DeleteCartItemView.as_view()

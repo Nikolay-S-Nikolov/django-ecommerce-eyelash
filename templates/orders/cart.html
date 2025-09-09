@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load cart_item_summary_tag %}
 {% load static %}
 {% block extra_head_script %}
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
@@ -23,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for cart_item in object_list %}
+                    {% for cart_item in object_list %}
                     <tr class="cart-item">
                         <td class="cart-item-media">
                             <a href="{% url 'product_details' slug=cart_item.product.slug %}">
@@ -39,28 +40,37 @@
                             <div class="cart-item-quantity-wrapper">
 
                                 {# TODO write update_cart_item logic#}
-    {#                            <form method="post" action="{% url 'update_cart_item' pk=item.pk %}" class="form-inline">#}
-                                <div class="quantity-wrapper">
-                                    <button type="button" class="qty-btn" data-action="decrease"
-                                        aria-label="Намали количество"><i class="fas fa-minus fa-2xs"></i></button>
-                                    <input type="number" id="quantity" name="quantity" value="{{ cart_item.quantity }}"
-                                        min="1" max="{{ cart_item.product.stock }}" aria-live="polite">
-                                    <button type="button" class="qty-btn" data-action="increase"
-                                        aria-label="Увеличи количество"><i class="fas fa-plus fa-2xs"></i></button>
-                                </div>
-                                                            {# TODO write remove_cart_item logic#}
-    {#                            <form method="post" action="{% url 'remove_cart_item' pk=item.pk %}" class="form-inline">#}
-                                    {# <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>#}
-                                    {# {% csrf_token %}#}
-                                    {# </form>#}
-                                <div class="remove-button"><i class="fa fa-trash"></i></div>
+{# <form method="post" action="{% url 'update_cart_item' pk=item.pk %}" class="form-inline">#}
+                                    <div class="quantity-wrapper">
+                                        <button type="button" class="qty-btn" data-action="decrease"
+                                            aria-label="Намали количество"><i class="fas fa-minus fa-2xs"></i></button>
+                                        <input type="number" class="quantity" name="quantity"
+                                            value="{{ cart_item.quantity }}" min="1" max="{{ cart_item.product.stock }}"
+                                            aria-live="polite">
+                                        <button type="button" class="qty-btn" data-action="increase"
+                                            aria-label="Увеличи количество"><i class="fas fa-plus fa-2xs"></i></button>
+                                    </div>
+                                    {# TODO write remove_cart_item logic#}
+{# <form method="post" action="{% url 'remove_cart_item' pk=item.pk %}" class="form-inline">#}
+                                        {# <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>#}
+                                        {# {% csrf_token %}#}
+                                        {# </form>#}
+                                    <div class="remove-button"><i class="fa fa-trash"></i></div>
                             </div>
+
+<p class="stock-message" style="color: red; margin-top: 5px; display:none;"></p>
                         </td>
-                        <td class="cart-item-price"><span class="price"> {{ cart_item.product.price }} лв</span></td>
+                        <td class="cart-item-price"><span class="price"> {{ cart_item.product.price|multiply:cart_item.quantity }} лв</span></td>
                     </tr>
-                {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="summary">
+            <div class="summary-row"><span>Стойност на продуктите </span><span class="total-price">{{ total }} лв</span></div>
+            <div class="proceed-to-checkout">
+                <a href="#" class="btn">Звършете поръчката</a>
+            </div>
         </div>
         {% else %}
         <p>Количката е празна <a href="{% url 'products' %}">Продължи пазаруване</a></p>
@@ -68,3 +78,6 @@
     </div>
 </div>
 {% endblock %}
+{% block extra_body %}
+    <script src="{% static 'js/quantity-validator.js' %}"></script>
+{% endblock extra_body %}

@@ -165,13 +165,15 @@ footer a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffd5dc; /* Light pink background */
+    background-color: #ffd5dc;
+    /* Light pink background */
     padding: 10px 20px;
 }
 
 .header-nav ul {
     display: flex;
-    gap: 20px; /* Space between navigation items */
+    gap: 20px;
+    /* Space between navigation items */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -183,15 +185,18 @@ footer a:hover {
 
 .header-nav ul li a {
     text-decoration: none;
-    color: #333; /* Dark text color */
+    color: #333;
+    /* Dark text color */
     font-weight: 500;
     font-size: 1rem;
     transition: color 0.3s, border-bottom 0.3s;
 }
 
 .header-nav ul li a:hover {
-    color: #ff6f91; /* Hover color */
-    border-bottom: 2px solid #ff6f91; /* Underline effect on hover */
+    color: #ff6f91;
+    /* Hover color */
+    border-bottom: 2px solid #ff6f91;
+    /* Underline effect on hover */
 }
 
 .testimonials,
@@ -267,8 +272,10 @@ footer a:hover {
     text-decoration: none;
     font-weight: 500;
 }
+
 .header-right a:hover {
-    color: #ff6f91; /* Highlight color on hover */
+    color: #ff6f91;
+    /* Highlight color on hover */
 }
 
 .header-right .btn {
@@ -296,12 +303,12 @@ form.lang-switcher {
 }
 
 .lang-switcher {
-  border-radius: 9999px;
-  background:#c07b9a;
-  border: 1px solid #c07b9a;
-  backdrop-filter: blur(6px);
-  margin: 0;
-  font-size: 1rem;
+    border-radius: 9999px;
+    background: #c07b9a;
+    border: 1px solid #c07b9a;
+    backdrop-filter: blur(6px);
+    margin: 0;
+    font-size: 1rem;
 }
 
 .lang-switcher:hover {
@@ -309,10 +316,11 @@ form.lang-switcher {
 }
 
 .lang-switcher option {
- border: none;
- font-size: 1rem;
+    border: none;
+    font-size: 1rem;
 }
-  /*
+
+/*
 .lang-switch button {
   border: 0;
   background: transparent;
@@ -395,12 +403,14 @@ form.lang-switcher {
     }
 
     .header-nav ul {
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: column;
+        /* Stack items vertically */
         gap: 10px;
     }
 
     .header-nav ul li a {
-        font-size: 0.9rem; /* Slightly smaller font size */
+        font-size: 0.9rem;
+        /* Slightly smaller font size */
     }
 
     .price-item {
@@ -456,14 +466,16 @@ form.lang-switcher {
     }
 
     .header-nav ul li a {
-        font-size: 0.8rem; /* Smaller font size for mobile */
+        font-size: 0.8rem;
+        /* Smaller font size for mobile */
     }
 }
 
 /* end colection */
 
 .end-colection {
-    background-color: #fff5f7; /* Light pink background for emphasis */
+    background-color: #fff5f7;
+    /* Light pink background for emphasis */
     padding: 20px 10vw;
     margin: 20px 0;
     border-radius: 10px;
@@ -491,12 +503,14 @@ form.lang-switcher {
 }
 
 .end-colection ul li::marker {
-    color: #ff6f91; /* Custom color for list markers */
+    color: #ff6f91;
+    /* Custom color for list markers */
 }
 
 .end-colection p:last-child {
     font-weight: bold;
-    color: #ff4d6d; /* Highlight the last call-to-action */
+    color: #ff4d6d;
+    /* Highlight the last call-to-action */
     text-align: center;
 }
 
@@ -511,7 +525,7 @@ form.lang-switcher {
 
 /*system messages */
 .system-message {
-    margin: 0  auto;
+    margin: 0 auto;
     max-width: min(1220px, 90vw);
 }
 
@@ -522,13 +536,25 @@ form.lang-switcher {
     margin: 5px 0;
     padding: 15px 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     animation: fadeIn 0.6s ease-in-out;
 }
 
+.alert {
+    text-align: center;
+    color: red;
+}
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 1224px) {
@@ -567,4 +593,3 @@ form.lang-switcher {
         font-size: 0.8rem;
     }
 }
-

@@ -1,3 +1,17 @@
+.messages{
+  background-color: #f9f9f9;
+  padding: 0.4rem 0;
+}
+.messages li{
+  list-style: none;
+  padding: 0.5rem;
+  border-radius: 12px;
+  max-width: 600px;
+  color: #ff6f91;
+  border: 2px solid #ffd5dc;
+  margin: 0 auto;
+}
+
 .cart-container {
   flex: 2;
   background-color: #f9f9f9;
@@ -105,8 +119,20 @@ input[type=number] {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
+
+.remove-button .form-delete{
+        margin:0;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.remove-button .form-delete button {
+    cursor: pointer;
+}
+
 .summary {
     display: flex;
     flex-direction: column;

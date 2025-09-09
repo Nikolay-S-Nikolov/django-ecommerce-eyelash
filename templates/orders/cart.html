@@ -50,24 +50,28 @@
                                         <button type="button" class="qty-btn" data-action="increase"
                                             aria-label="Увеличи количество"><i class="fas fa-plus fa-2xs"></i></button>
                                     </div>
-                                    {# TODO write remove_cart_item logic#}
-{# <form method="post" action="{% url 'remove_cart_item' pk=item.pk %}" class="form-inline">#}
-                                        {# <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>#}
-                                        {# {% csrf_token %}#}
-                                        {# </form>#}
-                                    <div class="remove-button"><i class="fa fa-trash"></i></div>
+                                    <div class="remove-button">
+                                        <form method="post" action="{% url 'delete_cart_item' pk=cart_item.pk %}"
+                                            class="form-delete">
+                                            <button><i class="fa fa-trash"></i></button>
+                                            {% csrf_token %}
+                                        </form>
+                                    </div>
                             </div>
 
-<p class="stock-message" style="color: red; margin-top: 5px; display:none;"></p>
+                            <p class="stock-message" style="color: red; margin-top: 5px; display:none;"></p>
                         </td>
-                        <td class="cart-item-price"><span class="price"> {{ cart_item.product.price|multiply:cart_item.quantity }} лв</span></td>
+                        <td class="cart-item-price">
+                            <span class="price"> {{ cart_item.product.price|multiply:cart_item.quantity }} лв</span>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
         <div class="summary">
-            <div class="summary-row"><span>Стойност на продуктите </span><span class="total-price">{{ total }} лв</span></div>
+            <div class="summary-row"><span>Стойност на продуктите </span><span class="total-price">{{ total }} лв</span>
+            </div>
             <div class="proceed-to-checkout">
                 <a href="#" class="btn">Звършете поръчката</a>
             </div>
@@ -79,5 +83,5 @@
 </div>
 {% endblock %}
 {% block extra_body %}
-    <script src="{% static 'js/quantity-validator.js' %}"></script>
+<script src="{% static 'js/quantity-validator.js' %}"></script>
 {% endblock extra_body %}

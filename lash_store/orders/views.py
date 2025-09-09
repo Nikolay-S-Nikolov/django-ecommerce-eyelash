@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import generic as views
@@ -25,17 +27,27 @@ cart_summary = CartSummaryView.as_view()
 def add_to_cart_ajax(request, product_id):
     if request.method == "POST":
         product = get_object_or_404(Product, pk=product_id)
+        data = json.loads(request.body)
+        quantity = int(data.get("quantity"))
 
         cart, created = Cart.objects.get_or_create(user=request.user)
         item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-        item.quantity += 1 #1 only for test TO BE REMOVED after test
+
+        item.quantity += quantity -1 if created else quantity
+        message = "Продуктът е добавен в кошницата"
+
+        if item.quantity > item.product.stock:
+            item.quantity = item.product.stock
+            message = f"От този продукт може да купите максимум {item.product.stock} бр."
+
+
         item.save()
 
         picture_url = product.images.first().image.url if product.images.exists() else ''
 
         return JsonResponse({
             "success": True,
-            "message": "Продуктът е добавен в кошницата",
+            "message": message,
             "product_details": {
                 "name": product.name,
                 "price": str(product.price),

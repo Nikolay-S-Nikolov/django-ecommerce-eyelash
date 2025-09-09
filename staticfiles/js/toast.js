@@ -19,14 +19,14 @@ function showToast(message, product = null) {
     // }, 15000); // 5 секунди видимост
 }
 
-function addToCart(productId) {
+function addToCart(productId, quantity_str) {
     fetch(`/checkout/add_to_cart/${productId}/`, {
         method: "POST",
         headers: {
             "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ "quantity": quantity_str }),
     })
     .then(response => response.json())
     .then(data => {

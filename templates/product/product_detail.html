@@ -47,7 +47,7 @@
                         <button type="button" class="qty-btn" data-action="increase" aria-label="Увеличи количество"><i
                                 class="fas fa-plus fa-xs"></i></button>
                     </div>
-                    <button type="button" class="add-to-cart" onclick="addToCart({{ product.pk }})">Добави в количката</button>
+                    <button type="button" class="add-to-cart" onclick="addToCart({{ product.pk }},document.getElementById('quantity').value)">Добави в количката</button>
                 </form>
                 <a href="{% url 'products' %}">Back to Products</a>
         </section>

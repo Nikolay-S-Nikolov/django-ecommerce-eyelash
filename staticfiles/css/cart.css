@@ -121,7 +121,8 @@ input[type=number] {
   justify-content: center;
 }
 
-.remove-button .form-delete{
+.remove-button .form-delete,
+.cart-item-quantity-wrapper .form-update {
         margin:0;
     padding: 0;
     background-color: transparent;
@@ -200,7 +201,6 @@ input[type=number] {
     display: block;
   }
 
-  /* Скриваме заглавията, защото на мобилно не са нужни */
   .table thead {
     display: none;
   }
@@ -222,7 +222,6 @@ input[type=number] {
     align-items: center;
   }
 
-  /* Втори ред – количество + цена */
   .cart-item-quantity,
   .cart-item-price {
     flex: 1 1 50%;
@@ -235,9 +234,31 @@ input[type=number] {
     content: "Цена: ";
   }
 
-  /* Подреждаме количеството по-хубаво */
   .cart-item-quantity-wrapper {
     width: 100%;
     justify-content: flex-start;
   }
+}
+
+.tooltip {
+  position: absolute;
+  background: #ffd5dc;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  transform: translateY(-120%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 10px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffd5dc transparent transparent transparent;
 }

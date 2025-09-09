@@ -18,7 +18,7 @@ class CartSummaryView(views.ListView):
 
     def get_queryset(self):
         cart, created = Cart.objects.get_or_create(user=self.request.user)
-        return cart.items.select_related('product').all()
+        return cart.items.select_related('product').all().order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -76,3 +76,31 @@ class DeleteCartItemView(LoginRequiredMixin,views.View):
         return HttpResponseRedirect(reverse('cart_summary'))
 
 delete_cart_item = DeleteCartItemView.as_view()
+
+def update_cart_item_quantity_ajax(request, cart_item_id):
+    if request.method == "POST":
+        cart_item = get_object_or_404(CartItem, pk=cart_item_id)
+        data = json.loads(request.body)
+        quantity = int(data.get("quantity"))
+
+        cart_item.quantity += quantity
+        if cart_item.quantity == 0:
+            cart_item.quantity=1
+        message = "Количеството е обновено успешно"
+
+        if cart_item.quantity > cart_item.product.stock:
+            cart_item.quantity = cart_item.product.stock
+            message = f"От този продукт може да купите максимум {cart_item.product.stock} бр."
+
+        cart_item.save()
+
+        return JsonResponse({
+            "success": True,
+            "message": message,
+            "product_details": {
+                "quantity": cart_item.quantity,
+                "total_price": str(cart_item.product.price * cart_item.quantity),
+                "cart_total": str(sum(item.product.price * item.quantity for item in cart_item.cart.items.all())),
+            }
+        })
+    return JsonResponse({"success": False, "message": "Невалидна заявка"})

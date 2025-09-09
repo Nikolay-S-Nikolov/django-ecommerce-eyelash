@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     {% for cart_item in object_list %}
-                    <tr class="cart-item">
+                    <tr class="cart-item" id="item-{{ cart_item.pk }}">
                         <td class="cart-item-media">
                             <a href="{% url 'product_details' slug=cart_item.product.slug %}">
                                 <img src="{{cart_item.product.images.first.image.url}}"
@@ -38,25 +38,28 @@
                         </td>
                         <td class="cart-item-quantity">
                             <div class="cart-item-quantity-wrapper">
-
-                                {# TODO write update_cart_item logic#}
-{# <form method="post" action="{% url 'update_cart_item' pk=item.pk %}" class="form-inline">#}
-                                    <div class="quantity-wrapper">
-                                        <button type="button" class="qty-btn" data-action="decrease"
-                                            aria-label="Намали количество"><i class="fas fa-minus fa-2xs"></i></button>
-                                        <input type="number" class="quantity" name="quantity"
+                                <div class="quantity-wrapper">
+                                        <button  onclick="updateCartItem({{ cart_item.pk }}, -1)" type="submit"
+                                                 name="action" value="decrease" class="qty-btn" data-action="decrease"
+                                            aria-label="Намали количество">
+                                            <i class="fas fa-minus fa-2xs"></i>
+                                        </button>
+                                        <input type="number" id="quantity-{{cart_item.pk}}" class="quantity quantity-input" name="quantity"
                                             value="{{ cart_item.quantity }}" min="1" max="{{ cart_item.product.stock }}"
-                                            aria-live="polite">
-                                        <button type="button" class="qty-btn" data-action="increase"
-                                            aria-label="Увеличи количество"><i class="fas fa-plus fa-2xs"></i></button>
-                                    </div>
-                                    <div class="remove-button">
-                                        <form method="post" action="{% url 'delete_cart_item' pk=cart_item.pk %}"
-                                            class="form-delete">
-                                            <button><i class="fa fa-trash"></i></button>
-                                            {% csrf_token %}
-                                        </form>
-                                    </div>
+                                            aria-live="polite" disabled>
+                                        <button  onclick="updateCartItem({{ cart_item.pk }}, 1)" type="submit"
+                                                 name="action" value="increase" class="qty-btn" data-action="increase"
+                                            aria-label="Увеличи количество">
+                                            <i class="fas fa-plus fa-2xs"></i>
+                                        </button>
+                                </div>
+                                <div class="remove-button">
+                                    <form method="post" action="{% url 'delete_cart_item' pk=cart_item.pk %}"
+                                        class="form-delete">
+                                        <button><i class="fa fa-trash"></i></button>
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
                             </div>
 
                             <p class="stock-message" style="color: red; margin-top: 5px; display:none;"></p>
@@ -83,5 +86,5 @@
 </div>
 {% endblock %}
 {% block extra_body %}
-<script src="{% static 'js/quantity-validator.js' %}"></script>
+<script src="{% static 'js/update_cart_item.js' %}"></script>
 {% endblock extra_body %}

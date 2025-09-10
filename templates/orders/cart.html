@@ -44,6 +44,7 @@
                                             aria-label="Намали количество">
                                             <i class="fas fa-minus fa-2xs"></i>
                                         </button>
+                                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
                                         <input type="number" id="quantity-{{cart_item.pk}}" class="quantity quantity-input" name="quantity"
                                             value="{{ cart_item.quantity }}" min="1" max="{{ cart_item.product.stock }}"
                                             aria-live="polite" disabled>

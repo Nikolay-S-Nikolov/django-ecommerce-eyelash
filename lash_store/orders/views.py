@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views import generic as views
 
+from lash_store.orders.decorators import ajax_login_required
 from lash_store.orders.models import Cart, CartItem
 from lash_store.product.models import Product
 
@@ -28,6 +29,7 @@ class CartSummaryView(views.ListView):
 
 cart_summary = CartSummaryView.as_view()
 
+@ajax_login_required
 def add_to_cart_ajax(request, product_id):
     if request.method == "POST":
         product = get_object_or_404(Product, pk=product_id)
@@ -77,6 +79,7 @@ class DeleteCartItemView(LoginRequiredMixin,views.View):
 
 delete_cart_item = DeleteCartItemView.as_view()
 
+@ajax_login_required
 def update_cart_item_quantity_ajax(request, cart_item_id):
     if request.method == "POST":
         cart_item = get_object_or_404(CartItem, pk=cart_item_id)

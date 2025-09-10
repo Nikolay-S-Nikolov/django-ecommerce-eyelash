@@ -30,6 +30,10 @@ function addToCart(productId, quantity_str) {
     })
     .then(response => response.json())
     .then(data => {
+        if (data.redirect) {
+            window.location.href = data.redirect;
+            return;
+        }
         if (data.success) {
             showToast(data.message, data.product_details);
         } else {

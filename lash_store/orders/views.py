@@ -4,15 +4,17 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
 from django.views import generic as views
 
 from lash_store.orders.decorators import ajax_login_required
-from lash_store.orders.models import Cart, CartItem
+from lash_store.orders.forms import CheckoutForm
+from lash_store.orders.models import Cart, CartItem, OrderItem, Order
 from lash_store.product.models import Product
 
-class CartSummaryView(views.ListView):
+
+class CartSummaryView(LoginRequiredMixin,views.ListView):
     model = CartItem
     template_name = 'orders/cart.html'
     context_object_name = 'object_list'
@@ -107,3 +109,75 @@ def update_cart_item_quantity_ajax(request, cart_item_id):
             }
         })
     return JsonResponse({"success": False, "message": "Невалидна заявка"})
+
+
+class CheckoutView(LoginRequiredMixin, views.FormView):
+    template_name = 'orders/checkout.html'
+    form_class = CheckoutForm
+    order_id = None
+
+    def get_success_url(self):
+        return reverse_lazy('order_confirmation', kwargs={'pk': self.order_id})
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.get_cart_items().exists():
+            messages.warning(request, "Вашата количка е празна. Добавете продукти преди да завършите поръчката.")
+            return redirect('cart_summary')
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart_items = self.get_cart_items()
+        context['cart_items'] = cart_items
+        context['total'] = self.calculate_total_price(cart_items)
+        return context
+
+    def form_valid(self, form):
+        cart_items = self.get_cart_items()
+
+        if not cart_items.exists():
+            messages.error(self.request, "Вашата количка е празна. Добавете продукти преди да завършите поръчката.")
+            return redirect('cart_summary')
+
+        order = form.save()
+        self.order_id = order.id
+
+        OrderItem.objects.bulk_create([
+            OrderItem(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                saved_price=cart_item.product.price*cart_item.quantity,
+            ) for cart_item in cart_items
+        ])
+
+        for item in cart_items:
+            item.product.units_sold += item.quantity
+            item.product.save()
+
+        cart_items.delete()
+
+        messages.success(self.request, "Your order has been placed successfully!")
+        return super().form_valid(form)
+
+    @staticmethod
+    def calculate_total_price(items):
+        total_price = sum(item.product.price * item.quantity for item in items)
+        return total_price
+
+    def get_cart_items(self):
+        return CartItem.objects.filter(cart__user=self.request.user).select_related('product').all()
+
+checkout_view = CheckoutView.as_view()
+
+class OrderConfirmationView(LoginRequiredMixin,views.DetailView):
+    template_name = 'orders/order_confirmation.html'
+    model = Order
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Order, pk=self.kwargs['pk'], customer=self.request.user)

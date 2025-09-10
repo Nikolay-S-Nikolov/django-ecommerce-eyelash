@@ -1,8 +1,13 @@
 from django.urls import path
+from django.views.generic import TemplateView, DetailView
 
-from lash_store.orders.views import cart_summary, add_to_cart_ajax, delete_cart_item, update_cart_item_quantity_ajax
+from lash_store.orders.models import Order
+from lash_store.orders.views import cart_summary, add_to_cart_ajax, delete_cart_item, update_cart_item_quantity_ajax, \
+    checkout_view
 
 urlpatterns = [
+    path('', checkout_view, name='checkout'),
+    path('confirmation/<int:pk>/', DetailView.as_view(template_name='orders/order_confirmation.html',model=Order), name='order_confirmation'),
     path ('cart/', cart_summary, name='cart_summary'),
     path('add_to_cart/<int:product_id>/', add_to_cart_ajax, name='add_to_cart'),
     path('cart/<int:pk>/delete/', delete_cart_item, name='delete_cart_item'),

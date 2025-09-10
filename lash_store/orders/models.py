@@ -60,11 +60,6 @@ class Order(models.Model):
     def calculated_total_price(self):
         return sum(item.price * item.quantity for item in self.items.all())
 
-    def save(self, *args, **kwargs):
-        # price calculation
-        self.total_price = self.calculated_total_price
-        super().save(*args, **kwargs)
-
     def clean(self):
         shipping = getattr(self, 'shippingaddress', None)
         if shipping and shipping.payment_method == 'bank_payment':
@@ -144,8 +139,8 @@ class CartItem(models.Model):
 class ShippingAddress(models.Model):
     MAX_CITY_LENGTH = 50
     MAX_NAME_LENGTH = 35
-    MAX_PHONE_NUMBER_LENGTH = 10
-    MAX_POSTAL_CODE_LENGTH = 10
+    MAX_PHONE_NUMBER_LENGTH = 13
+    MAX_POSTAL_CODE_LENGTH = 4
     MAX_PAYMENT_METHOD_LENGTH = 20
     PAYMENT_CHOICES = [
         ('pay_on_delivery', 'Pay on Delivery'),
@@ -159,8 +154,8 @@ class ShippingAddress(models.Model):
     phone_number = models.CharField(
         max_length=MAX_PHONE_NUMBER_LENGTH,
         validators=[RegexValidator(
-            regex=r"^0\d{9}$",
-            message="Please, enter a valid phone number in the format 0888123456"
+            regex=r"^((?:\+359|0)8[7-9]\d{7}|(?:\+359|0)[2-9]\d{6,8})$",
+            message="Моля въведете валиден телефоне номер с формат 0888123456"
         )]
     )
 

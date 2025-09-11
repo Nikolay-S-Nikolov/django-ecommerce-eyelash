@@ -1,0 +1,68 @@
+.checkout-container{
+    flex: 2;
+    width: min(80dvw,80rem);
+    margin: 0 auto;
+}
+
+form{
+    box-shadow: none;
+    width: 100%;
+}
+
+.checkout-header{
+    text-align: center;
+    margin: 1.2rem;
+}
+
+.form-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.col-left{
+    flex: 1 1 35%;
+}
+
+.col-right{
+    flex: 1 1 60%;
+}
+
+.floating-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-textarea {
+  width: 100%;
+  padding: 1.2rem 0.8rem 0.4rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background: none;
+}
+
+.floating-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0.8rem;
+  color: #888;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.floating-textarea:focus + label,
+.floating-textarea:not(:placeholder-shown) + label {
+  top: 0.2rem;
+  left: 0.6rem;
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.floating-group.input-container input {
+    padding: 1.2rem 0.8rem;
+
+}

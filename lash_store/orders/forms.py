@@ -9,6 +9,13 @@ class CheckoutForm(forms.ModelForm):
 
     name = forms.CharField(
         max_length=ShippingAddress.MAX_NAME_LENGTH,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'autocomplete': 'name',
+            }
+        ),
     )
 
     phone_number = forms.CharField(
@@ -16,23 +23,59 @@ class CheckoutForm(forms.ModelForm):
         validators=[RegexValidator(
             regex=r"^((?:\+359|0)8[7-9]\d{7}|(?:\+359|0)[2-9]\d{6,8})$",
             message="Моля въведете валиден телефоне номер с формат 0888123456"
-        )]
+        )],
+        widget = forms.NumberInput(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'autocomplete': 'tel',
+            }
+        ),
     )
 
-    email = forms.EmailField()
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'autocomplete': 'email',
+            }
+        ),
+    )
 
     address = forms.CharField(
-        widget=forms.Textarea,
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'rows': 5,
+                'autocomplete': 'street-address',
+            }
+        ),
     )
 
     city = forms.CharField(
         max_length=ShippingAddress.MAX_CITY_LENGTH,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'autocomplete': 'address-level2',
+            }
+        ),
     )
 
     postal_code = forms.CharField(
         max_length=MAX_POSTAL_CODE_LENGTH,
         min_length=MIN_POSTAL_CODE_LENGTH,
-        validators=[RegexValidator(r'^\d{4}$',"Въведете валиден пощенски код от 4 цифри.")]
+        validators=[RegexValidator(r'^\d{4}$',"Въведете валиден пощенски код от 4 цифри.")],
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'autocomplete': 'postal-code',
+            }
+        ),
     )
 
     payment_method = forms.ChoiceField(
@@ -42,7 +85,14 @@ class CheckoutForm(forms.ModelForm):
     )
 
     note = forms.CharField(
-        widget=forms.Textarea,
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': '',
+                'class': 'floating-textarea',
+                'rows': 5,
+            }
+        ),
     )
 
     class Meta:

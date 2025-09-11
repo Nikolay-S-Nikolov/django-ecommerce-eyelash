@@ -60,6 +60,7 @@
                     <table class="order-table">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Продукти</th>
                                 <th>Цена</th>
                             </tr>
@@ -67,13 +68,24 @@
                         <tbody>
                             {% for item in cart_items %}
                             <tr>
-                                <td>{{ item.product.name }} × {{ item.quantity }}</td>
-                                <td> - {{ item.product.price|multiply:item.quantity }} лв</td>
+                            <td class="product-image">
+                                <a href="{% url 'product_details' slug=item.product.slug %}">
+                                    <img src="{{ item.product.images.first.image.url }}"
+                                    alt="product {{ item.product.name }} image">
+                                </a>
+                            </td>
+                                <td>
+                                    <p>{{ item.product.name }}</p>
+                                    <p>Количество: {{ item.quantity }} бр.</p>
+                                    <p>Единична цена: {{ item.product.price }} лв</p>
+                                 </td>
+                                <td class="price-centered">{{ item.product.price|multiply:item.quantity }} лв</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th></th>
                                 <th>Обща сума</th>
                                 <th>{{ total }} лв</th>
                             </tr>
@@ -102,7 +114,9 @@
                                 обработена след потвърждаване на плащането.</small>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Поръчай</button>
+                    <div class="action-button">
+                        <button type="submit" class="btn place-order">Поръчай</button>
+                    </div>
                 </div>
             </div>
         </div>

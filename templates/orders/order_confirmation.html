@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load order_item_price %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/order_confirmation.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+    <div class="container-confirmation">
+        <div class="confirmation-wrapper">
+            <header>
+                <h2 class="confirmation-header">Вашата поръчка е изпратена за обработка</h2>
+                <p>Поръчка № {{ order.created_at|date:'ymd' }}-{{ order.id }}</p>
+               <p>Дата: <time datetime="{{ order.created_at|date:'Y-m-d' }}">{{ order.created_at|date:'d.m.Y' }}</time></p>
+            </header>
+            <article>
+                <h4 class="order-confirmation-details">Детайли на поръчката</h4>
+                <table class="confirmation-table">
+                    <thead>
+                    <tr>
+                        <th>Продукт</th>
+                        <th>Междинна сума</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in order.items.all %}
+                        <tr>
+                            <td>
+                                <p><strong>{{ item.product.name }}</strong></p>
+                                <p>Количество: {{ item.quantity }} бр.</p>
+                                <p>Цена за брой: {{ item.saved_price|divide:item.quantity }} лв</p>
+                            </td>
+                            <td>{{ item.saved_price }} лв</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="1"><strong>Обща сума:</strong></td>
+                        <td><strong>{{ order.total_price }} лв</strong></td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <h4 class="shipping-details-title">Данни за доставка</h4>
+                <address class="shipping-details">
+                    <p>{{ order.shippingaddress.name }}</p>
+                    <p>{{ order.shippingaddress.address }}</p>
+                    <p>{{ order.shippingaddress.city }}, {{ order.shippingaddress.postal_code }}</p>
+                    <p><a href="mailto:{{ order.shippingaddress.email }}">{{ order.shippingaddress.email }}</a></p>
+                    <p><a href="tel:{{ order.shippingaddress.phone_number }}">{{ order.shippingaddress.phone_number }}</a></p>
+                    {% if order.note %}
+                        <p><em>Бележка: {{ order.note }}</em></p>
+                    {% endif %}
+                </address>
+            </article>
+            <div class="action-buttons">
+                <a href="#" class="btn action-button" >История на поръчките</a>
+                <a href="{% url 'products' %}" class="btn action-button">Продължи с пазаруването</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

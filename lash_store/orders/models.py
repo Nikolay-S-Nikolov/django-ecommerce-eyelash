@@ -68,9 +68,6 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    """
-    Links products to orders.
-    """
     PRICE_MAX_DIGITS = 6
     PRICE_DECIMAL_PLACES = 2
 

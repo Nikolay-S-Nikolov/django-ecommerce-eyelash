@@ -175,9 +175,10 @@ class CheckoutView(LoginRequiredMixin, views.FormView):
 
 checkout_view = CheckoutView.as_view()
 
-class OrderConfirmationView(LoginRequiredMixin,views.DetailView):
-    template_name = 'orders/order_confirmation.html'
+class OrderConfirmationView(LoginRequiredMixin, views.DetailView):
     model = Order
+    template_name = 'orders/order_confirmation.html'
+    context_object_name = 'order'
 
     def get_object(self, queryset=None):
         return get_object_or_404(Order, pk=self.kwargs['pk'], customer=self.request.user)

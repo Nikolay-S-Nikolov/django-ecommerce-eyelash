@@ -9,7 +9,6 @@
   <div class="history-wrapper">
     <h2 class="orders-history-header">История на поръчките</h2>
     {% include 'partials/messages.html' %}
-
     <table class="orders-history-table">
       <thead>
         <tr>
@@ -28,7 +27,7 @@
           <td data-label="Статус">{{ order.get_status_display }}</td>
           <td data-label="Обща сума">{{ order.total_price }} лв</td>
           <td data-label="Действия">
-            <a href="#" class="btn btn-sm">Детайли</a>
+            <a href="{% url 'order_details' pk=order.pk%}" class="btn btn-sm">Детайли</a>
           </td>
         </tr>
         {% empty %}

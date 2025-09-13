@@ -11,15 +11,15 @@ class Order(models.Model):
     PRICE_DECIMAL_PLACES = 2
     MAX_STATUS_LENGTH = 10
     STATUS_CHOICES = [
-        ('Pending', 'Pending'),
-        ('Processing', 'Processing'),
-        ('Completed', 'Completed'),
-        ('Cancelled', 'Cancelled'),
+        ('Pending', 'Очаква се'),
+        ('Processing', 'В обработка'),
+        ('Completed', 'Завършена'),
+        ('Cancelled', 'Отменена'),
     ]
     PAYMENT_STATUS_CHOICES = [
-        ('unpaid', 'Unpaid'),
-        ('paid', 'Paid'),
-        ('refunded', 'Refunded'),
+        ('unpaid', 'Неплатена'),
+        ('paid', 'Платена'),
+        ('refunded', 'Възстановена'),
     ]
 
     customer = models.ForeignKey(

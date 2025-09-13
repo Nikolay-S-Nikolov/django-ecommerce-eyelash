@@ -1,6 +1,6 @@
 from django.urls import path
 from lash_store.orders.views import cart_summary, add_to_cart_ajax, delete_cart_item, update_cart_item_quantity_ajax, \
-    checkout_view, order_confirmation_view, orders_history_view
+    checkout_view, order_confirmation_view, orders_history_view, order_detail_view
 
 urlpatterns = [
     path('', checkout_view, name='checkout'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('cart/<int:pk>/delete/', delete_cart_item, name='delete_cart_item'),
     path('cart/<int:cart_item_id>/update/', update_cart_item_quantity_ajax, name='update_cart_item'),
     path('orders/', orders_history_view, name='orders_history'),
+    path('orders/<int:pk>/', order_detail_view, name='order_details'),
 ]

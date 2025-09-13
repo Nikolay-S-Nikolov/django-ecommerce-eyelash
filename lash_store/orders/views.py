@@ -180,8 +180,8 @@ class OrderConfirmationView(LoginRequiredMixin, views.DetailView):
     template_name = 'orders/order_confirmation.html'
     context_object_name = 'order'
 
-    def get_object(self, queryset=None):
-        return get_object_or_404(Order, pk=self.kwargs['pk'], customer=self.request.user)
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user)
 
 order_confirmation_view = OrderConfirmationView.as_view()
 
@@ -195,3 +195,12 @@ class OrderHistoryView(LoginRequiredMixin, views.ListView):
         return Order.objects.filter(customer=self.request.user).order_by('-created_at')
 
 orders_history_view = OrderHistoryView.as_view()
+
+class OrderDetailView(LoginRequiredMixin, views.DetailView):
+    model = Order
+    template_name = 'orders/order_details.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user)
+
+order_detail_view = OrderDetailView.as_view()

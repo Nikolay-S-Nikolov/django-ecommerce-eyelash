@@ -1,0 +1,123 @@
+.container-orders-history {
+  flex: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+.history-wrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 2rem 0;
+}
+
+.orders-history-header {
+  width: 100%;
+  text-align: center;
+}
+
+.orders-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.orders-history-table th,
+.orders-history-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ffd5dc;
+}
+
+.orders-history-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #333;
+}
+
+.orders-history-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.orders-history-table .btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  background-color: #c07b9a;
+  color: #fff;
+  border-radius: 9999px;
+  text-decoration: none;
+}
+
+.orders-history-table .btn-sm:hover {
+  background-color: #ff6f91;
+}
+
+@media screen and (max-width: 600px) {
+  .container-orders-history {
+    padding: 1rem;
+  }
+
+  .history-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+  .orders-history-header {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .orders-history-table {
+    font-size: 0.85rem;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .orders-history-table th,
+  .orders-history-table td {
+    padding: 0.6rem;
+    white-space: normal;
+  }
+
+  .orders-history-table td a.btn-sm {
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .orders-history-table thead {
+    display: none;
+  }
+
+  .orders-history-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ffd5dc;
+    border-radius: 6px;
+    padding: 0.8rem;
+    background-color: #fff;
+  }
+
+  .orders-history-table tbody td {
+    display: block;
+    text-align: left;
+    border-bottom: none;
+  }
+
+  .orders-history-table tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #333;
+  }
+}

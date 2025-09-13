@@ -182,3 +182,16 @@ class OrderConfirmationView(LoginRequiredMixin, views.DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(Order, pk=self.kwargs['pk'], customer=self.request.user)
+
+order_confirmation_view = OrderConfirmationView.as_view()
+
+class OrderHistoryView(LoginRequiredMixin, views.ListView):
+    model = Order
+    template_name = 'orders/orders_history.html'
+    context_object_name = 'orders'
+    # paginate_by = 5
+
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user).order_by('-created_at')
+
+orders_history_view = OrderHistoryView.as_view()

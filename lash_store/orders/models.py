@@ -53,6 +53,8 @@ class Order(models.Model):
         verbose_name='Бележка',
     )
 
+    email_sent = models.BooleanField(default=False)
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата на създаване',

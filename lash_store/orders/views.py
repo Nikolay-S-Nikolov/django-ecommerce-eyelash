@@ -162,7 +162,7 @@ class CheckoutView(LoginRequiredMixin, views.FormView):
 
         cart_items.delete()
 
-        messages.success(self.request, "Your order has been placed successfully!")
+        messages.success(self.request, "Поръчката е изпратена за обработка!")
         return super().form_valid(form)
 
     @staticmethod

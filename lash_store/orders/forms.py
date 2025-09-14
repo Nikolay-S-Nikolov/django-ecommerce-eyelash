@@ -148,6 +148,7 @@ class CheckoutForm(forms.ModelForm):
                 address=self.cleaned_data['address'],
                 city=self.cleaned_data['city'],
                 postal_code=self.cleaned_data['postal_code'],
+                payment_method = self.cleaned_data['payment_method'],
             )
 
             return order

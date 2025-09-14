@@ -25,36 +25,46 @@ class Order(models.Model):
     customer = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
+        verbose_name='Клиент',
     )
     status = models.CharField(
         max_length=MAX_STATUS_LENGTH,
         choices=STATUS_CHOICES,
         default='Pending',
+        verbose_name='Статус на поръчката',
     )
 
     total_price = models.DecimalField(
         max_digits=PRICE_MAX_DIGITS,
         decimal_places=PRICE_DECIMAL_PLACES,
+        verbose_name='Обща сума',
     )
 
     payment_status = models.CharField(
         max_length=10,
         choices=PAYMENT_STATUS_CHOICES,
         default='unpaid',
+        verbose_name='Статус на плащане',
     )
 
-    note = models.TextField(blank=True, null=True)
+    note = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='Бележка',
+    )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
+        verbose_name='Дата на създаване',
     )
 
     updated_at = models.DateTimeField(
         auto_now=True,
+        verbose_name='Последна промяна',
     )
 
     def __str__(self):
-        return f"Order #{self.id} - status: {self.status}"
+        return f"Поръчка #{self.id} - статус: {self.get_status_display()}"
 
     @property
     def calculated_total_price(self):
@@ -79,14 +89,18 @@ class OrderItem(models.Model):
 
     product = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        verbose_name= 'Продукт'
     )
 
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(
+        verbose_name= 'Количество'
+    )
 
     saved_price = models.DecimalField(
         max_digits=PRICE_MAX_DIGITS,
         decimal_places=PRICE_DECIMAL_PLACES,
+        verbose_name= 'Стойност'
     )
 
     @property
@@ -99,7 +113,7 @@ class OrderItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Ordered {self.quantity} x {self.product}"
+        return f"Поръчани {self.quantity} бр. от {self.product}"
 
 
 class Cart(models.Model):
@@ -140,12 +154,13 @@ class ShippingAddress(models.Model):
     MAX_POSTAL_CODE_LENGTH = 4
     MAX_PAYMENT_METHOD_LENGTH = 20
     PAYMENT_CHOICES = [
-        ('pay_on_delivery', 'Pay on Delivery'),
-        ('bank_payment', 'Bank Payment'),
+        ('pay_on_delivery', 'Плати при доставка'),
+        ('bank_payment', 'Банков превод'),
     ]
 
     name = models.CharField(
         max_length=MAX_NAME_LENGTH,
+        verbose_name= 'Име за доставката'
     )
 
     phone_number = models.CharField(
@@ -153,7 +168,8 @@ class ShippingAddress(models.Model):
         validators=[RegexValidator(
             regex=r"^((?:\+359|0)8[7-9]\d{7}|(?:\+359|0)[2-9]\d{6,8})$",
             message="Моля въведете валиден телефоне номер с формат 0888123456"
-        )]
+        )],
+        verbose_name='Телефонен номер за доставката'
     )
 
     email = models.EmailField()
@@ -161,6 +177,7 @@ class ShippingAddress(models.Model):
     customer = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
+        verbose_name='Клиент'
     )
 
     order = models.OneToOneField(
@@ -168,20 +185,25 @@ class ShippingAddress(models.Model):
         on_delete=models.CASCADE
     )
 
-    address = models.TextField()
+    address = models.TextField(
+        verbose_name='Адрес за доставка'
+    )
 
     city = models.CharField(
         max_length=MAX_CITY_LENGTH,
+        verbose_name='Град'
     )
 
     postal_code = models.CharField(
         max_length=MAX_POSTAL_CODE_LENGTH,
+        verbose_name='Пощенски код'
     )
 
     payment_method = models.CharField(
         max_length=MAX_PAYMENT_METHOD_LENGTH,
         choices=PAYMENT_CHOICES,
-        default='pay_on_delivery'
+        default='pay_on_delivery',
+        verbose_name='Мотод на плащане'
     )
 
     created_at = models.DateTimeField(
@@ -189,4 +211,4 @@ class ShippingAddress(models.Model):
     )
 
     def __str__(self):
-        return f"Shipping for {self.order}"
+        return f"Адрес за доставка за {self.order}"

@@ -3,8 +3,10 @@ import json
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
+from django.core.mail import EmailMultiAlternatives
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views import generic as views
 
@@ -182,6 +184,42 @@ class OrderConfirmationView(LoginRequiredMixin, views.DetailView):
 
     def get_queryset(self):
         return Order.objects.filter(customer=self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        response = super().get(request, *args, **kwargs)
+        self.send_confirmation_email()
+        return response
+
+    def send_confirmation_email(self):
+        order = self.get_object()
+
+        if order.email_sent:
+            return
+
+        shipping = getattr(order, 'shippingaddress', None)
+        if not shipping:
+            return
+
+        subject = f"Потвърждение за поръчка № {order.created_at.strftime('%y%m%d')}-{order.id}"
+        from_email = 'no_reply@lashstore.bg'
+        to_email = [shipping.email]
+
+        html_content = render_to_string('email/order_confirmation_email.html', {
+            'order': order,
+        })
+
+        email_message = EmailMultiAlternatives(
+            subject=subject,
+            body="Вашата поръчка е регистрирана успешно.",
+            from_email=from_email,
+            to=to_email,
+        )
+        email_message.attach_alternative(html_content, "text/html")
+        email_message.send(fail_silently=False)
+
+        order.email_sent = True
+        order.save(update_fields=['email_sent'])
+
 
 order_confirmation_view = OrderConfirmationView.as_view()
 

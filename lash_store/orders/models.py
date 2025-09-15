@@ -70,7 +70,7 @@ class Order(models.Model):
 
     @property
     def calculated_total_price(self):
-        return sum(item.price * item.quantity for item in self.items.all())
+        return sum(item.product.price * item.quantity for item in self.items.all())
 
     def clean(self):
         shipping = getattr(self, 'shippingaddress', None)

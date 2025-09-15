@@ -2,7 +2,6 @@ import json
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
 from django.core.mail import EmailMultiAlternatives
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
@@ -71,10 +70,7 @@ def add_to_cart_ajax(request, product_id):
 
 class DeleteCartItemView(LoginRequiredMixin,views.View):
     def post(self, request, pk):
-        cart_item = get_object_or_404(CartItem, pk=pk, cart__user=request.user)
-
-        if self.request.user != cart_item.cart.user:
-            raise PermissionDenied("You don't have permission to remove this cart item.")
+        cart_item = get_object_or_404(CartItem, pk=pk, cart__user=self.request.user)
 
         product_name = cart_item.product.name
         cart_item.delete()
@@ -121,11 +117,11 @@ class CheckoutView(LoginRequiredMixin, views.FormView):
     def get_success_url(self):
         return reverse_lazy('order_confirmation', kwargs={'pk': self.order_id})
 
-    def dispatch(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         if not self.get_cart_items().exists():
             messages.warning(request, "Вашата количка е празна. Добавете продукти преди да завършите поръчката.")
             return redirect('cart_summary')
-        return super().dispatch(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -160,6 +156,7 @@ class CheckoutView(LoginRequiredMixin, views.FormView):
 
         for item in cart_items:
             item.product.units_sold += item.quantity
+            # item.product.stock -= item.quantity    # logic for stock reduction
             item.product.save()
 
         cart_items.delete()

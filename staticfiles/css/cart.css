@@ -1,0 +1,264 @@
+.messages{
+  background-color: #f9f9f9;
+  padding: 0.4rem 0;
+}
+.messages li{
+  list-style: none;
+  padding: 0.5rem;
+  border-radius: 12px;
+  max-width: 600px;
+  color: #ff6f91;
+  border: 2px solid #ffd5dc;
+  margin: 0 auto;
+}
+
+.cart-container {
+  flex: 2;
+  background-color: #f9f9f9;
+}
+
+.cart-details {
+  max-width: min(80vw, 80rem);
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.cart-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding-bottom: 1rem;
+}
+
+/*.cart-item{*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*}*/
+.cart-item-media img {
+  max-width: 80px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.cart-item-quantity .cart-item-quantity-wrapper {
+  display: flex;
+}
+
+.quantity-wrapper {
+  flex: 1 1 auto;
+  display: inline-flex;
+  max-width: 200px;
+
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0.5rem 0;
+}
+
+.qty-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #ffd5dc;
+  background: #ffd5dc;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+  transition: background 0.2s, border-color 0.2s;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover {
+  background: #c07b9a;
+}
+
+.quantity {
+  flex: 2;
+  min-width: 60px;
+  max-width: 100px;
+  height: 2.5rem;
+  padding: 0.25rem;
+  text-align: center;
+  border: 1px solid #ffd5dc;
+  background: #f1f9fc;
+  border-radius: 22px;
+}
+
+#quantity:invalid {
+  border-color: red;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.remove-button {
+  min-width: 3rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-button .form-delete,
+.cart-item-quantity-wrapper .form-update {
+        margin:0;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.remove-button .form-delete button {
+    cursor: pointer;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.summary-row{
+    margin-top: 1rem;
+    padding: 0 1rem;
+    min-width: 20.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.proceed-to-checkout .btn {
+    margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+    justify-content: center;
+  height: 38px;
+    min-width: 20.5rem;
+  padding: 0 18px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all .2s ease;
+  line-height: 1;
+  cursor: pointer;
+  border: 2px solid #c07b9a;
+  background: #c07b9a;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.proceed-to-checkout .btn:hover {
+  color: #ff6f91;
+}
+
+.footer {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  thead tr th {}
+
+  tbody tr:first-child td {
+    padding-top: 0.5rem;
+    border-top: 2px solid #ffd5dc;
+  }
+
+  tbody tr:last-child td {
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ffd5dc;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Спираме table layout-а */
+  .table,
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td {
+    display: block;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .cart-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .cart-item-media,
+  .cart-item-name {
+    flex: 1 1 40%;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .cart-item-quantity,
+  .cart-item-price {
+    flex: 1 1 50%;
+    display: flex !important;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .cart-item-price:before {
+    content: "Цена: ";
+  }
+
+  .cart-item-quantity-wrapper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  background: #ffd5dc;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  transform: translateY(-120%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 10px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffd5dc transparent transparent transparent;
+}

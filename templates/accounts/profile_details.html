@@ -9,6 +9,11 @@
  {% endblock %}
 {% block content %}
 <div class="profile-info">
+<div class="history-link">
+        <a href="{% url 'orders_history' %}" class="btn btn-history">
+        <i class="fa-solid fa-clock-rotate-left"></i> История на поръчките
+    </a>
+</div>
     <table class="table">
         <tbody>
                 <tr>

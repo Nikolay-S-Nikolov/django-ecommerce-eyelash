@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load order_item_price %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/orders_history.css' %}">
+{% endblock %}
+{% block body %}
+<div class="container-orders-history">
+  <div class="history-wrapper">
+    <h2 class="orders-history-header">История на поръчките</h2>
+    {% include 'partials/messages.html' %}
+    <table class="orders-history-table">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Дата</th>
+          <th>Статус</th>
+          <th>Обща сума</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td data-label="№">{{ order.created_at|date:'ymd' }}-{{ order.id }}</td>
+          <td data-label="Дата">{{ order.created_at|date:'d.m.Y' }}</td>
+          <td data-label="Статус">{{ order.get_status_display }}</td>
+          <td data-label="Обща сума">{{ order.total_price }} лв</td>
+          <td data-label="Действия">
+            <a href="{% url 'order_details' pk=order.pk%}" class="btn btn-sm">Детайли</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">Нямате направени поръчки.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

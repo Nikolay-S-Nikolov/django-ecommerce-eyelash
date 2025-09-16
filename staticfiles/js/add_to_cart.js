@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Block Enter key to prevent form submission
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") e.preventDefault();
   });
@@ -28,8 +27,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (val > max) input.value = max;
   });
 });
-
-// Note: Form submission handling is not included as the form 
-// action is commented out in the HTML.
 
 // Add additional functionality to dissable buttons at limits if needed.

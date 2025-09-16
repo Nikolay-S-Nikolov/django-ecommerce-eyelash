@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_item_summary_tag %}
+{% load show_field_error %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+<div class="checkout-container">
+    <h2 class="checkout-header">Завършване на поръчката</h2>
+    <form action="{% url 'checkout' %}" method="post">
+        {% csrf_token %}
+        <div class="form-wrapper">
+            <div class="col-left">
+                <div class="delivery-info-body">
+                    <h3 class="card-title">Данни за доставка</h3>
+                    {% csrf_token %}
+                    <div class="floating-group input-container">
+                        {{ form.name}}
+                        <label for="{{ form.name.id_for_label }}">Име и фамилия</label>
+                        {% render_field_errors form.name %}
+                    </div>
+                    <div class="floating-group input-container">
+                        {{ form.phone_number }}
+                        <label for="{{ form.phone_number.id_for_label }}">Телефонен номер</label>
+                        {% render_field_errors form.phone_number %}
+                    </div>
+                    <div class="floating-group input-container">
+                        {{ form.email }}
+                        <label for="{{ form.address.id_for_label }}">Имейл адрес</label>
+                        {% render_field_errors form.email %}
+                    </div>
+                    <div class="floating-group">
+                        {{ form.address }}
+                        <label for="{{ form.address.id_for_label }}">Адрес за доставка</label>
+                        {% render_field_errors form.address %}
+                    </div>
+                    <div class="floating-group input-container">
+                        {{ form.city }}
+                        <label for="{{ form.city.id_for_label }}">Град</label>
+                        {% render_field_errors form.city %}
+                    </div>
+                    <div class="floating-group input-container">
+                        {{ form.postal_code }}
+                        <label for="{{ form.postal_code.id_for_label }}">Пощенски код</label>
+                        {% render_field_errors form.postal_code %}
+                    </div>
+                    <div class="floating-group">
+                        {{ form.note }}
+                        <label for="{{ form.note.id_for_label }}">Бележка към поръчката</label>
+                        {% render_field_errors form.note %}
+                    </div>
+                </div>
+            </div>
+            <!-- Order Summary -->
+            <div class="col-right">
+                <div class="order-info-body">
+                    <h3 class="card-title">Поръчка</h3>
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Продукти</th>
+                                <th>Цена</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                            <tr>
+                            <td class="product-image">
+                                <a href="{% url 'product_details' slug=item.product.slug %}">
+                                    <img src="{{ item.product.images.first.image.url }}"
+                                    alt="product {{ item.product.name }} image">
+                                </a>
+                            </td>
+                                <td>
+                                    <p>{{ item.product.name }}</p>
+                                    <p>Количество: {{ item.quantity }} бр.</p>
+                                    <p>Единична цена: {{ item.product.price }} лв</p>
+                                 </td>
+                                <td class="price-centered">{{ item.product.price|multiply:item.quantity }} лв</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Обща сума</th>
+                                <th>{{ total }} лв</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="mb-3 m-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" id="payOnDelivery"
+                                value="pay_on_delivery" checked>
+                            <label class="form-check-label" for="payOnDelivery">
+                                Наложен платеж
+                            </label>
+                            <small class="form-text text-muted">Заплатете сумата директно на куриера при получаване на
+                                поръчката. Не се изисква авансово плащане.</small>
+                        </div>
+                    </div>
+                    <div class="mb-3 m-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment_method" id="bankPayment"
+                                value="bank_payment">
+                            <label class="form-check-label" for="bankPayment">
+                                Банков превод
+                            </label>
+                            <small class="form-text text-muted">Преведете сумата директно по нашата банкова сметка.
+                                Използвайте номера на поръчката като основание за плащането. Поръчката ще бъде
+                                обработена след потвърждаване на плащането.</small>
+                        </div>
+                    </div>
+                    <div class="action-button">
+                        <button type="submit" class="btn place-order">Поръчай</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

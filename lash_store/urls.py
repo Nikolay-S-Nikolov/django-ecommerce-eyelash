@@ -27,7 +27,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("profile/", include("lash_store.accounts.url")),
     path("i18n/", include("django.conf.urls.i18n")),
-    path('product/', include("lash_store.product.urls"))
+    path('product/', include("lash_store.product.urls")),
+    path('checkout/', include("lash_store.orders.urls")),
+
 ]
 
 if DEBUG:

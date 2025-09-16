@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'lash_store.accounts.apps.AccountsConfig',
     'lash_store.common.apps.CommonConfig',
     'lash_store.product.apps.ProductConfig',
+    'lash_store.orders.apps.OrdersConfig',
 
     # installed apps
     'allauth',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+
 
 ]
 

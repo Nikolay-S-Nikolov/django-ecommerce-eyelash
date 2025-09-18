@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+<div class="contact-container">
+    <div class="contact-info">
+        <header class="contact-header">
+            <h2 class="contact-title">Свържете се с нас</h2>
+            <p>Вашето мнение и въпроси са важни за нас. Можете да ни пишете чрез формата по-долу или на предоставените контакти. Ще се постараем да Ви отговорим в рамките на 24 часа.</p>
+        </header>
+        <div class="contact-social">
+            <ul class="align-items-center">
+                {% if contact_info.phone_number %}
+                    <li><a href="tel:{{ object.phone_number }}"><i class="fa fa-phone"></i></a></li>
+                    <li><a href="https://wa.me/{{ object.phone_number }}"><i class="fa fa-whatsapp"></i></a>
+                    </li>
+                {% endif %}
+                <li><a href="https://www.facebook.com/share/19i41xLFMJ/" target="_blank"><i
+                        class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/tahova.rusina/" target="_blank"><i
+                        class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+        <div class="contact-content">
+            {% if contact_info.custom_message %}
+                <p>{{ contact_info.custom_message|linebreaks }}</p>
+            {% endif %}
+            {% if contact_info.working_time %}
+                <p><strong>Работно време:</strong></p>
+                <p>{{ contact_info.working_time|linebreaks }}</p>
+            {% endif %}
+            {% if contact_info.address %}
+                <p><strong>Адрес:</strong></p>
+                <p>{{ contact_info.address|linebreaks }}</p>
+            {% endif %}
+        </div>
+        <form class="contact-form" action="" method="post">
+            <h4>Send me a message</h4>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_body %}
+{#<script src="{% static '' %}"></script>#}
+{% endblock extra_body %}

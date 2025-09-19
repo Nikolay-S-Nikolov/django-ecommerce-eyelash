@@ -20,7 +20,7 @@ class ContactPageView(views.FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contact_info'] = ContactInfo.objects.filter(visible=True).order_by('-updated_at').first()
-        context['links'] = SocialLink.objects.order_by('-appearance_order', 'label')
+        context['links'] = SocialLink.objects.order_by('appearance_order', 'label')
         return context
 
 contact_page = ContactPageView.as_view()

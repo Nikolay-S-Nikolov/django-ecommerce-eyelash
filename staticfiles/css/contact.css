@@ -101,10 +101,29 @@ footer {
     margin-top: 0;
 }
 
+.success {
+    color: green;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
 .error {
-    color: #d9534f;
-    font-size: 0.9rem;
-    margin-top: -0.5rem;
+    color: red;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.spinner i {
+    margin-right: 0.5rem;
 }
 
 @media screen and (max-width: 600px) {

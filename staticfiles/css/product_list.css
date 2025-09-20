@@ -4,8 +4,9 @@
 }
 
 /* Top text style */
-.products{
+.products {
     flex: 2;
+    animation: fadeInPage 0.8s ease-in-out;
 }
 
 .products>h1 {
@@ -245,4 +246,14 @@
         font-size: 0.9rem;
         padding: 4px 6px;
     }
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

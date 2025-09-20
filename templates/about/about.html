@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+<section class="about-us">
+  <div class="about-container">
+    <div class="intro-section">
+      <div class="text-column">
+        <h1 class="centered">За нас</h1>
+        <p class="centered">Добре дошли в <strong>Kristin Beauty</strong> – вашият доверен партньор в света на
+          красотата!</p>
+
+        <p>Ние вярваме, че всяка жена заслужава да се чувства уверена, красива и уникална. Затова създадохме марка,
+          специализирана в предлагането на ръчно изработени ветрила за мигли, създадени с грижа и внимание към всеки
+          детайл.</p>
+        <div class="content-wrapper">
+          <div class="image-column">
+            <img src="{% static 'images/about_image.png' %}" alt="Ветрила за мигли" />
+          </div>
+          <div class="text-wrapper">
+            <h2>Нашата история</h2>
+            <p>Нашата история започва от любовта към изкуството на миглопоставянето и желанието да осигурим на
+              професионалистите в бранша продукти, които не само улесняват работата им, но и правят всяка визия
+              впечатляваща...</p>
+
+            <h2>Нашата мисия</h2>
+            <p>Мисията ни е да предлагаме качествени, надеждни и достъпни продукти...</p>
+
+            <h2>Нашата визия</h2>
+            <p>Стремим се да изградим марка, разпознаваема с качество и коректност...</p>
+          </div>
+        </div>
+        <div class="highlights-section">
+          <h2>Какво ни отличава?</h2>
+          <ul class="highlights">
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Ръчна изработка – перфектна симетрия и
+              естествено излъчване</li>
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Премиум материали – висококачествени PBT
+              фибри</li>
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Богато разнообразие – дължини, извивки и
+              дебелини</li>
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Експресна доставка – навременна доставка
+            </li>
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Професионална консултация – съвети и идеи
+            </li>
+            <li><i class="fa-solid fa-star fa-spin" style="color: gold;"></i> Коректност и доверие – уважение към всяка
+              поръчка</li>
+          </ul>
+
+          <h2>Нашите ценности</h2>
+          <ul class="values">
+            <li>Високо качество</li>
+            <li>Достъпни цени</li>
+            <li>Лоялност и коректност</li>
+            <li>Бързо обслужване</li>
+            <li>Подкрепа за професионалистите</li>
+          </ul>
+
+          <h2>Защо да изберете нас?</h2>
+          <p>Защото получавате продукти, тествани от професионалисти...</p>
+
+          <p><i class="fa-solid fa-camera " style="color: gold;"></i> В нашия сайт ще откриете реални снимки на нашите
+            ветрила...</p>
+          <p><i class="fa-solid fa-heart" style="color: gold;"></i> Нашата най-голяма награда е доверието и усмивката на
+            жените...</p>
+          <p><i class="fa-solid fa-hand-point-right" style="color: gold;"></i> Присъединете се към общността на
+            професионалните lash артисти...</p>
+        </div>
+        <div class="button-wrapper">
+          <a href="{% url 'products' %}" class="cta-button">Разгледай продуктите</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+{% block extra_body %}
+<script src=""></script>
+{% endblock extra_body %}

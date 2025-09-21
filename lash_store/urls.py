@@ -29,7 +29,7 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path('product/', include("lash_store.product.urls")),
     path('checkout/', include("lash_store.orders.urls")),
-
+    path('contact/', include("lash_store.contact.urls")),
 ]
 
 if DEBUG:

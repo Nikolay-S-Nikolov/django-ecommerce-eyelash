@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'lash_store.common.apps.CommonConfig',
     'lash_store.product.apps.ProductConfig',
     'lash_store.orders.apps.OrdersConfig',
+    'lash_store.contact.apps.ContactConfig',
 
     # installed apps
     'allauth',
@@ -58,8 +59,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-
-
 ]
 
 MIDDLEWARE = [

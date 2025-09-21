@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+{% block body %}
+{%include 'partials/messages.html' %}
+<div class="contact-container">
+    <div class="contact-info">
+        <header class="contact-header">
+            <h2 class="contact-title">Свържете се с нас</h2>
+            <p>Вашето мнение и въпроси са важни за нас. Можете да ни пишете чрез формата по-долу или на предоставените
+                контакти. Ще се постараем да Ви отговорим в рамките на 24 часа.</p>
+        </header>
+        <div class="contact-social">
+            <ul class="align-items-center">
+                {% if contact_info.phone_number %}
+                    <li><a href="tel:{{ contact_info.phone_number }}"><i class="fa fa-phone"></i></a></li>
+                    <li><a href="https://wa.me/{{ contact_info.phone_number }}"><i class="fa fa-whatsapp"></i></a>
+                    </li>
+                {% endif %}
+                {% for link in links %}
+                    <li><a href="{{ link.url }}" target="_blank"><i class="fa {{ link.get_icon }}"></i></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="contact-content">
+            {% if contact_info.custom_message %}
+                <p>{{ contact_info.custom_message|linebreaks }}</p>
+            {% endif %}
+            {% if contact_info.working_time %}
+                <p><strong>Работно време:</strong></p>
+                <p>{{ contact_info.working_time|linebreaks }}</p>
+            {% endif %}
+            {% if contact_info.address %}
+                <p><strong>Адрес:</strong></p>
+                <p>{{ contact_info.address|linebreaks }}</p>
+            {% endif %}
+        </div>
+        <form class="contact-form" action="{% url 'send_contact_message' %}" method="post"
+              autocomplete="off" data-url="{% url 'send_contact_message' %}" data-csrf="{{ csrf_token }}">
+            <h4>Изпратете съобщение</h4>
+            {% csrf_token %}
+            <div id="form-spinner" class="spinner" style="display: none;">
+                <i class="fa fa-spinner fa-spin"></i> Изпращане...
+            </div>
+            {% for field in form %}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Изпрати">
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_body %}
+    <script src="{% static 'js/send_message.js' %}"></script>
+{% endblock extra_body %}

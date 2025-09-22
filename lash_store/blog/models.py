@@ -15,6 +15,7 @@ class BlogPost(models.Model):
     slug = models.SlugField(
         unique=True,
         blank=True,
+        max_length=MAX_TITLE_LENGTH,
     )
 
     content = models.TextField(

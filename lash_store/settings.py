@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-
+    'markdownify',
 ]
 
 MIDDLEWARE = [
@@ -241,5 +241,14 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = env("ACCOUNT_DEFAULT_HTTP_PROTOCOL", default="ht
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            "a", "p", "h1", "h2", "h3", "h4", "h5", "h6", "h7", "ul", "li", "span", "strong"
+        ],
+        "STRIP": False,
+        "WHITELIST_ATTRS": ["href", "src", "alt", "title"],
+    }
+}
 
 # ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https" #в прод.

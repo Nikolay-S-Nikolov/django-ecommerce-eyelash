@@ -1,0 +1,164 @@
+.blog-detail {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.blog-title {
+  color: #4a148c;
+  margin-bottom: 0.5rem;
+}
+
+.blog-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.blog-main-images {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+.blog-main-images img {
+  width: calc(50% - 0.5rem);
+  display: block;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.blog-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  background-color: #fff;
+}
+
+/* Заглавия */
+.blog-content h2 {
+  font-size: 1.8rem;
+  color: #4a148c;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+}
+
+.blog-content h3 {
+  font-size: 1.4rem;
+  color: #4a148c;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Параграфи */
+.blog-content p {
+  margin-bottom: 1rem;
+}
+
+/* Списъци */
+.blog-content ul {
+  list-style: disc inside;
+  margin: 1rem 0 1.5rem 1rem;
+  padding-left: 0;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Удебелен текст */
+.blog-content strong {
+  color: #4a148c;
+  font-weight: 600;
+}
+
+/* Линкове */
+.blog-content a {
+  color: #4a148c;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.blog-content a:hover {
+  color: #ab47bc;
+}
+
+/* Разделител между секции */
+.blog-content h2:not(:first-child)::before {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(to right, #d48ee8, #fff);
+  margin: 2rem 0 1rem;
+}
+
+.blog-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.blog-gallery img {
+  width: calc(33.333% - 0.5rem);
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #6a2c91;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .blog-content {
+    font-size: 1rem;
+  }
+
+  .blog-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .blog-content h3 {
+    font-size: 1.2rem;
+  }
+  .blog-gallery img {
+    width: calc(50% - 0.5rem);
+  }
+}

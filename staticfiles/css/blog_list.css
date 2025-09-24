@@ -1,0 +1,22 @@
+.products-list.blog-list{
+    flex-wrap: wrap;
+}
+
+.card-heading-h3.blog-card a{
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.card-information.blog-card-information{
+    justify-content: flex-start;
+}
+
+.see-more-btn.blog-btn{
+    margin-top: auto;
+}
+
+@media (max-width: 640px) {
+    .product-item.blog-item{
+        width: 98%;
+    }
+}

@@ -52,6 +52,7 @@ class BlogPost(models.Model):
                 slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = slug
+        self.create_excerpt()
         super().save(*args, **kwargs)
 
     class Meta:

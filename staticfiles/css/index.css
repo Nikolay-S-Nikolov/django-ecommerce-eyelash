@@ -1,0 +1,203 @@
+.homepage h1,
+.homepage h2 {
+    color: #c07b9a;
+    margin-bottom: 1rem;
+}
+
+.homepage ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.homepage li {
+    margin-bottom: 0.5rem;
+}
+
+/* Hero секция */
+.hero {
+    position: relative;
+    padding: 4rem 2rem;
+    color: #fff;
+    text-align: center;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-shadow: 2px 4px 4px rgba(50, 28, 15, 0.6);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero p {
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Секции */
+.homepage section {
+    padding: 3rem 2rem;
+    background-color: #fff;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.feautures-content {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.features-image {
+    height: 100%;
+}
+
+.features-image img {
+    display: block;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.feautures-content ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
+    padding-left: 1rem;
+    max-width: 400px;
+    list-style: disc;
+
+}
+
+.features,
+.benefits,
+.testimonials,
+.shop-info,
+.cta {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Testimonials */
+.testimonials blockquote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #6a1b9a;
+    border-left: 4px solid #ce93d8;
+    padding-left: 1rem;
+}
+
+/* CTA бутон */
+.shop-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    border: 2px solid #ce93d8;
+    background: #c07b9a;
+    color: #fff;
+    font-size: 1rem;
+    max-width: 400px;
+    margin: 2rem auto 0 auto;
+    transition: all .2s ease;
+    position: relative;
+    z-index: 2;    
+}
+
+.shop-button:hover {
+    background-color: #8e24aa;
+    box-shadow: 2px 4px 4px rgba(50, 28, 15, 0.6);
+    text-decoration: none;
+}
+
+/* Икони в shop-info */
+.shop-icons {
+    list-style: none;
+    padding-left: 0;
+}
+
+.shop-icons li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .homepage section {
+        padding: 1rem;
+        background-color: #fff;
+        margin-bottom: 0.5rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .shop-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .feautures-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .features-image,
+    .feautures-content ul {
+        max-width: 100%;
+        padding-left: 1rem;
+        margin: 0;
+    }
+
+    .features h2 {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {}

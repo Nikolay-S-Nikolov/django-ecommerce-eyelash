@@ -30,6 +30,8 @@ urlpatterns = [
     path('product/', include("lash_store.product.urls")),
     path('checkout/', include("lash_store.orders.urls")),
     path('contact/', include("lash_store.contact.urls")),
+    path('blog/', include("lash_store.blog.urls")),
+
 ]
 
 if DEBUG:

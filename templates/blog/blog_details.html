@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markdownify %}
+{% block extra_head_script %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+{% block body %}
+<div class="blog-detail">
+  <div class="blog-container">
+    <article class="blog-post">
+      <header>
+        <h1 class="blog-title">{{ post.title }}</h1>
+        <p class="blog-meta">
+          <span>Дата: {{ post.created_at|date:"d.m.Y" }}</span>
+        </p>
+      </header>
+      <div class="blog-main-images">
+          {% for top_image in post.images.all|slice:":2" %}
+          <img src="{{ top_image.image.url }}" alt="{{ top_image.alt_text }}">
+          {% endfor %}
+      </div>
+      <div class="blog-content">
+        {{ post.content|markdownify }}
+      </div>
+      {% if post.images.all %}
+      <div class="blog-gallery">
+          {% for image in post.images.all|slice:"2:" %}
+            <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+          {% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    <a href="{% url 'blog_list' %}" class="back-link"><i class="fa-solid fa-arrow-left"></i> Назад към всички публикации</a>
+  </div>
+</div>
+{% endblock %}

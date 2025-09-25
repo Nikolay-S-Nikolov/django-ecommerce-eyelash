@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Marck+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     margin: 0;
@@ -15,10 +16,9 @@ html {
     box-sizing: inherit;
 }
 
-
 /* General styles */
 body {
-    font: 15px/1.5 'Poppins', sans-serif;
+    /*font: 15px/1.5 'Poppins', sans-serif;*/
     background-color: #fff;
     /* padding: 20px; */
 }
@@ -30,10 +30,35 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    /* border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
+/*  H1, H2 */
+h1, h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.5em;
+}
+
+h3, h4, nav, .menu {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+body, p, li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+}
+
+.logo, .banner-text, .highlight {
+    font-family: 'Marck Script', cursive;
+    font-size: 1.8em; /* малко по-голям за да изпъква */
+    color: #000; /* можеш да смениш според дизайна */
+}
 h1 {
     color: #333;
 }
@@ -100,7 +125,6 @@ input[type="submit"]:hover {
 }
 
 footer {
-    margin-top: 20px;
     padding: 10px;
     background-color: #333;
     color: white;
@@ -120,7 +144,6 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Header styles */
 .header {
     display: flex;
     align-items: center;
@@ -166,14 +189,12 @@ footer a:hover {
     justify-content: center;
     align-items: center;
     background-color: #ffd5dc;
-    /* Light pink background */
     padding: 10px 20px;
 }
 
 .header-nav ul {
     display: flex;
     gap: 20px;
-    /* Space between navigation items */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -186,7 +207,6 @@ footer a:hover {
 .header-nav ul li a {
     text-decoration: none;
     color: #333;
-    /* Dark text color */
     font-weight: 500;
     font-size: 1rem;
     transition: color 0.3s, border-bottom 0.3s;
@@ -194,9 +214,7 @@ footer a:hover {
 
 .header-nav ul li a:hover {
     color: #ff6f91;
-    /* Hover color */
     border-bottom: 2px solid #ff6f91;
-    /* Underline effect on hover */
 }
 
 .testimonials,
@@ -210,21 +228,6 @@ footer a:hover {
     padding: 20px;
     border-radius: 5px;
     margin: 20px 0;
-}
-
-.testimonials p {
-    font-style: italic;
-    color: #555;
-}
-
-.faq p {
-    font-weight: bold;
-    color: #333;
-}
-
-.faq p+p {
-    font-weight: normal;
-    color: #666;
 }
 
 .header-follow-us {
@@ -275,7 +278,6 @@ footer a:hover {
 
 .header-right a:hover {
     color: #ff6f91;
-    /* Highlight color on hover */
 }
 
 .header-right .btn {
@@ -288,10 +290,9 @@ footer a:hover {
     transition: all .2s ease;
     line-height: 1;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 2px solid #c07b9a;
     background: #c07b9a;
     color: #fff;
-    border-color: #c07b9a;
     font-size: 1rem;
 
 
@@ -387,16 +388,6 @@ form.lang-switcher {
         padding: 8px 12px;
     }
 
-    .testimonials,
-    .faq,
-    .shipping-returns,
-    .payment-methods,
-    .privacy-policy,
-    .terms-conditions,
-    .about-us {
-        padding: 15px;
-    }
-
     .header-nav {
         justify-content: flex-start;
         padding: 10px;
@@ -411,10 +402,6 @@ form.lang-switcher {
     .header-nav ul li a {
         font-size: 0.9rem;
         /* Slightly smaller font size */
-    }
-
-    .price-item {
-        font-size: 0.9rem;
     }
 }
 
@@ -467,51 +454,7 @@ form.lang-switcher {
 
     .header-nav ul li a {
         font-size: 0.8rem;
-        /* Smaller font size for mobile */
     }
-}
-
-/* end colection */
-
-.end-colection {
-    background-color: #fff5f7;
-    /* Light pink background for emphasis */
-    padding: 20px 10vw;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-}
-
-.end-colection p {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 1rem;
-}
-
-.end-colection ul {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-.end-colection ul li {
-    margin-bottom: 10px;
-    color: #555;
-    font-size: 1rem;
-    list-style-type: none;
-}
-
-.end-colection ul li::marker {
-    color: #ff6f91;
-    /* Custom color for list markers */
-}
-
-.end-colection p:last-child {
-    font-weight: bold;
-    color: #ff4d6d;
-    /* Highlight the last call-to-action */
-    text-align: center;
 }
 
 .message-facebook {
@@ -522,8 +465,6 @@ form.lang-switcher {
     font-size: 1.3rem;
     margin-top: 20px;
 }
-
-/*system messages */
 .system-message {
     margin: 0 auto;
     max-width: min(1220px, 90vw);
@@ -569,27 +510,5 @@ form.lang-switcher {
         flex-direction: column;
         align-items: center;
         gap: 10px;
-    }
-}
-
-@media (max-width: 768px) {
-    .end-colection {
-        padding: 15px;
-    }
-
-    .end-colection p,
-    .end-colection ul li {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .end-colection {
-        padding: 10px;
-    }
-
-    .end-colection p,
-    .end-colection ul li {
-        font-size: 0.8rem;
     }
 }

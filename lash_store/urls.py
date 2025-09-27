@@ -31,7 +31,7 @@ urlpatterns = [
     path('checkout/', include("lash_store.orders.urls")),
     path('contact/', include("lash_store.contact.urls")),
     path('blog/', include("lash_store.blog.urls")),
-
+    path('cookie_consent/', include('cookie_consent.urls')),
 ]
 
 if DEBUG:

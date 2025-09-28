@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1>Бисквитки</h1>
+
+  <p>
+    Това е списък с категориите бисквитки, които използваме на нашия уебсайт и причините, поради които ги използваме.
+  </p>
+
+  {% for cookie_group in object_list  %}
+    {% include "cookie_consent/_cookie_group.html" %}
+  {% endfor %}
+
+{% endblock %}

@@ -3,6 +3,8 @@
 {% load static %}
 {% load account %}
 {% load i18n %}
+{% load cookie_consent_tags %}
+{% url "cookie_consent_cookie_group_list" as url_cookies %}
 <html lang="bg">
 
 <head>
@@ -308,11 +310,74 @@
         {% endblock %}
         <footer class="footer">
             <p>&copy; 2025 Handmade Eyelash FANS. All rights reserved.</p>
+            <a href="{% url 'cookie_consent_status'%}">Статус</a>
         </footer>
     </div>
 
     {% block extra_body %}{% endblock extra_body %}
     <script src="{% static 'js/base/base.js' %}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'cookie_consent/cookiebar.js' %}"></script>
+
+{% if request|cookie_consent_enabled %}
+    {% not_accepted_or_declined_cookie_groups request as cookie_groups %}
+    {% if cookie_groups %}
+        {% url "cookie_consent_cookie_group_list" as url_cookies %}
+        {% cookie_consent_accept_url cookie_groups as url_accept %}
+        {% cookie_consent_decline_url cookie_groups as url_decline %}
+
+        <script type="text/javascript">
+        let cookie_groups = [];
+        {% for cookie_group in cookie_groups %}
+            cookie_groups.push("{{ cookie_group.varname }}");
+        {% endfor %}
+
+        function ready(fn) {
+            if (document.readyState !== 'loading') {
+                fn();
+            } else if (document.addEventListener) {
+                document.addEventListener('DOMContentLoaded', fn);
+            } else {
+                document.attachEvent('onreadystatechange', function() { // for IE <= 8
+                    if (document.readyState !== 'loading')
+                        fn();
+                });
+            }
+        }
+        ready(function() {
+            let cookie_bar_text = "{% filter escapejs %}{% include 'cookie_consent/cookies-container.html' %}{% endfilter %}";
+
+            showCookieBar({
+                content: cookie_bar_text,
+                cookie_groups: cookie_groups,
+                cookie_decline: "{% get_decline_cookie_groups_cookie_string request cookie_groups %}",
+                beforeDeclined: function() {
+                    document.cookie = "{% get_decline_cookie_groups_cookie_string request cookie_groups %}";
+                }
+            });
+        });
+        </script>
+    {% endif %}
+{% endif %}
+
+{% if request|cookie_group_accepted:"not_required" %}
+{#---analytics is the varname of the cookie group---#}
+    {#---------GOOGLE ANALYTICS---------#}
+{#        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXX"></script>#}
+{#    <script>#}
+{#        window.dataLayer = window.dataLayer || [];#}
+{#        function gtag(){dataLayer.push(arguments);}#}
+{#        gtag('js', new Date());#}
+{#        gtag('config', 'UA-XXXXXX');#}
+{#    </script>#}
+        <script>
+        console.log("Analytics cookies not declined");
+    </script>
+{% else %}
+    <script>
+        console.log("Analytics cookies declined");
+    </script>
+{% endif %}
 </body>
 
 </html>

@@ -33,20 +33,26 @@ body {
 }
 
 /*  H1, H2 */
-h1, h2 {
+h1,
+h2 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 0.5em;
 }
 
-h3, h4, nav, .menu {
+h3,
+h4,
+nav,
+.menu {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-body, p, li {
+body,
+p,
+li {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 1.6;
@@ -54,11 +60,16 @@ body, p, li {
     color: #333;
 }
 
-.logo, .banner-text, .highlight {
+.logo,
+.banner-text,
+.highlight {
     font-family: 'Marck Script', cursive;
-    font-size: 1.8em; /* малко по-голям за да изпъква */
-    color: #000; /* можеш да смениш според дизайна */
+    font-size: 1.8em;
+    /* малко по-голям за да изпъква */
+    color: #000;
+    /* можеш да смениш според дизайна */
 }
+
 h1 {
     color: #333;
 }
@@ -465,6 +476,7 @@ form.lang-switcher {
     font-size: 1.3rem;
     margin-top: 20px;
 }
+
 .system-message {
     margin: 0 auto;
     max-width: min(1220px, 90vw);
@@ -484,6 +496,82 @@ form.lang-switcher {
 .alert {
     text-align: center;
     color: red;
+}
+
+/*cookies-popup*/
+.cookies-popup-notice {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.cookies-notices-wrapper {
+    box-sizing: border-box;
+    width: calc(100% - 1rem);
+    max-width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #c07b9a;
+    padding: 1rem;
+}
+
+.cookies-notice a {
+    font-weight: 700;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    color: #000;
+    text-decoration: underline;
+}
+
+.cookies-notice-message {
+    text-align: left;
+    color: #000;
+    margin-top: 1rem;
+}
+
+.cookies-notice-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cookies-notice-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    border: 2px solid #ce93d8;
+    background: #c07b9a;
+    color: #fff;
+    font-size: 1rem;
+    max-width: 165px;
+    margin-top: 1rem;
+    transition: all .2s ease;
+    position: relative;
+}
+
+.cookies-notice-buttons a:hover {
+    background-color: #7b1fa2;
+    box-shadow: 2px 4px 4px rgba(50, 28, 15, 0.6);
+    text-decoration: none;
+}
+
+.container div.cookie-group:last-of-type {
+    flex: 2;
 }
 
 @keyframes fadeIn {

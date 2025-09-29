@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
     'markdownify',
+    'cookie_consent',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +76,9 @@ MIDDLEWARE = [
 
     # allauth middleware
     'allauth.account.middleware.AccountMiddleware',
+
+    # django-cookie-consent
+    'cookie_consent.middleware.CleanCookiesMiddleware',
 ]
 
 ROOT_URLCONF = 'lash_store.urls'

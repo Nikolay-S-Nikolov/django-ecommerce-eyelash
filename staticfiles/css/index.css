@@ -1,3 +1,8 @@
+.homepage{
+    flex: 2;
+    animation: fadeInPage 0.8s ease-in-out;
+}
+
 .homepage h1,
 .homepage h2 {
     color: #c07b9a;
@@ -201,3 +206,13 @@
 }
 
 @media screen and (max-width: 480px) {}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -59,4 +59,5 @@ EXPOSE 8000
 
 # Run migrations then start gunicorn. For zero-downtime deployments, prefer
 # running migrations as a separate release step on your platform.
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn lash_store.wsgi:application --bind 0.0.0.0:${PORT} --workers 3 --timeout 60 --access-logfile - --error-logfile -"]
+# ${PORT:-8000} falls back to 8000 if PORT is not injected by the platform.
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn lash_store.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 60 --access-logfile - --error-logfile -"]

@@ -55,9 +55,10 @@ RUN python manage.py collectstatic --noinput
 
 USER app
 
-EXPOSE 8000
+# Default port; PaaS platforms (Railway/Render) override via PORT env var.
+EXPOSE 8080
 
 # Run migrations then start gunicorn. For zero-downtime deployments, prefer
 # running migrations as a separate release step on your platform.
 # ${PORT:-8000} falls back to 8000 if PORT is not injected by the platform.
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn lash_store.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 60 --access-logfile - --error-logfile -"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn lash_store.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 60 --access-logfile - --error-logfile -"]

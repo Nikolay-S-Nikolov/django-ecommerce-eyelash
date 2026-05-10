@@ -295,19 +295,15 @@ Open your **web service → Variables** and add:
 | `SECRET_KEY` | _generate a fresh random string_ |
 | `DEBUG` | `False` |
 | `ALLOWED_HOSTS` | `your-app.up.railway.app` (Railway domain) |
-| `DB_NAME` | `${{Postgres.PGDATABASE}}` |
-| `DB_USER` | `${{Postgres.PGUSER}}` |
-| `DB_PASSWORD` | `${{Postgres.PGPASSWORD}}` |
-| `DB_HOST` | `${{Postgres.PGHOST}}` |
-| `DB_PORT` | `${{Postgres.PGPORT}}` |
+| `DATABASE_URL` | `${{Postgres.DATABASE_URL}}` |
 | `EMAIL_HOST` | `smtp.gmail.com` |
 | `EMAIL_HOST_USER` | _your sender email_ |
 | `EMAIL_HOST_PASSWORD` | _SMTP app password_ |
-| `GOOGLE_CLIENT_ID` | _from Google Cloud Console_ |
-| `GOOGLE_CLIENT_SECRET` | _from Google Cloud Console_ |
+| `GOOGLE_CLIENT_ID` | _from Google Cloud Console (optional)_ |
+| `GOOGLE_CLIENT_SECRET` | _from Google Cloud Console (optional)_ |
 | `ACCOUNT_DEFAULT_HTTP_PROTOCOL` | `https` |
 
-> The `${{Postgres.PG*}}` syntax is a Railway **reference variable** — values stay in sync if the database is recreated.
+> The `${{Postgres.DATABASE_URL}}` syntax is a Railway **reference variable** — settings.py reads `DATABASE_URL` automatically. Values stay in sync if the database is recreated.
 
 ### Step 4 — Generate a public domain
 

@@ -116,16 +116,21 @@ WSGI_APPLICATION = 'lash_store.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", None),
-        "USER": os.environ.get("DB_USER", None),
-        "PASSWORD": os.environ.get("DB_PASSWORD", None),
-        "HOST": os.environ.get("DB_HOST", None),
-        "PORT": os.environ.get("DB_PORT", 5432),
+# DATABASE_URL takes precedence (Railway/Render/Heroku style).
+# Falls back to discrete DB_* vars for local development.
+if env.str("DATABASE_URL", default=""):
+    DATABASES = {"default": env.db("DATABASE_URL")}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME"),
+            "USER": os.environ.get("DB_USER"),
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": os.environ.get("DB_HOST"),
+            "PORT": os.environ.get("DB_PORT", 5432),
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

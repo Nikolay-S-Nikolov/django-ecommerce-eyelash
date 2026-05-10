@@ -50,13 +50,8 @@ RUN pip install --no-cache-dir /wheels/*.whl && rm -rf /wheels
 # App source
 COPY --chown=app:app . .
 
-# Collect static files at build time. Dummy values are needed only because
-# settings.py reads GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET eagerly.
-RUN SECRET_KEY=build-only \
-    GOOGLE_CLIENT_ID=build-only \
-    GOOGLE_CLIENT_SECRET=build-only \
-    DB_NAME=build DB_USER=build DB_PASSWORD=build DB_HOST=localhost DB_PORT=5432 \
-    python manage.py collectstatic --noinput
+# Collect static files at build time
+RUN python manage.py collectstatic --noinput
 
 USER app
 

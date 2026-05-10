@@ -166,9 +166,9 @@ Copy the template and edit values:
 cp .env.example .env
 ```
 
-See [`.env.example`](.env.example) for the full list with comments. Minimum required for local dev: `DB_*` vars, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`.
+See [`.env.example`](.env.example) for the full list with comments. Minimum required for local dev: `DB_*` vars.
 
-> ⚠️ **Note**: `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` are read directly inside `settings.py` and the project will not start if they are missing. For local development without OAuth, supply any non-empty placeholder string.
+> ℹ️ **Google OAuth**: `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` default to empty strings, so the app starts without them. Set real values only when you want the "Sign in with Google" button to work.
 
 ### 4. Database setup
 ```bash

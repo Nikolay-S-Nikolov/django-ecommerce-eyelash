@@ -37,6 +37,14 @@ DEBUG = env.bool("DEBUG", default=True)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
+# Trusted origins for unsafe HTTP methods (Django 4.0+).
+# Must include scheme. Example value: "https://example.com,https://www.example.com"
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+
+# Behind a reverse proxy (Railway, Render, Heroku) — trust the X-Forwarded-Proto
+# header so Django recognizes HTTPS requests and matches HTTPS origins in CSRF checks.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 # Application definition
 

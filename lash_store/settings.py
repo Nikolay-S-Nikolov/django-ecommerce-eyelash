@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'lash_store.blog.apps.BlogConfig',
 
     # installed apps
+    'cloudinary_storage',
+    'cloudinary',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -218,6 +220,26 @@ STATIC_ROOT = BASE_DIR / "static_files/"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media_images/"
+
+# Cloudinary credentials. If unset, falls back to local filesystem (dev convenience).
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME", default=""),
+    "API_KEY": env("CLOUDINARY_API_KEY", default=""),
+    "API_SECRET": env("CLOUDINARY_API_SECRET", default=""),
+}
+
+# Django 4.2+ STORAGES dict. Use Cloudinary for user-uploaded media when credentials
+# are present; keep local storage otherwise so local dev keeps working without env vars.
+_media_backend = (
+    "cloudinary_storage.storage.MediaCloudinaryStorage"
+    if CLOUDINARY_STORAGE["CLOUD_NAME"]
+    else "django.core.files.storage.FileSystemStorage"
+)
+
+STORAGES = {
+    "default": {"BACKEND": _media_backend},
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

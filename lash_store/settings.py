@@ -221,18 +221,16 @@ STATIC_ROOT = BASE_DIR / "static_files/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media_images/"
 
-# Cloudinary credentials. If unset, falls back to local filesystem (dev convenience).
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME", default=""),
-    "API_KEY": env("CLOUDINARY_API_KEY", default=""),
-    "API_SECRET": env("CLOUDINARY_API_SECRET", default=""),
-}
+# Cloudinary auto-configures itself from CLOUDINARY_URL in os.environ.
+# Format: cloudinary://API_KEY:API_SECRET@CLOUD_NAME
+# Copy it directly from the Cloudinary Dashboard → API Keys page.
+CLOUDINARY_URL = env("CLOUDINARY_URL", default="")
 
-# Django 4.2+ STORAGES dict. Use Cloudinary for user-uploaded media when credentials
-# are present; keep local storage otherwise so local dev keeps working without env vars.
+# Django 4.2+ STORAGES dict. Use Cloudinary for user-uploaded media when configured;
+# fall back to local filesystem otherwise so dev keeps working without env vars.
 _media_backend = (
     "cloudinary_storage.storage.MediaCloudinaryStorage"
-    if CLOUDINARY_STORAGE["CLOUD_NAME"]
+    if CLOUDINARY_URL
     else "django.core.files.storage.FileSystemStorage"
 )
 

@@ -26,13 +26,13 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        cloud_name = settings.CLOUDINARY_STORAGE.get("CLOUD_NAME")
-        if not cloud_name:
-            raise CommandError(
-                "CLOUDINARY_CLOUD_NAME is not set. Add Cloudinary credentials to .env first."
-            )
-
+        import cloudinary
         import cloudinary.uploader
+
+        if not cloudinary.config().cloud_name:
+            raise CommandError(
+                "Cloudinary is not configured. Set CLOUDINARY_URL in your .env first."
+            )
 
         dry_run = options["dry_run"]
         media_root = settings.MEDIA_ROOT
